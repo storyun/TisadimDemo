@@ -9,5 +9,6 @@ public class SadimFrame extends JFrame {
 	public SadimFrame() {
 		super();
 		this.setSize(new Dimension(850, 650));
+		System.out.println("ER");
 	}
 }
