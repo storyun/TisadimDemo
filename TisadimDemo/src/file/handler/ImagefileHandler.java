@@ -1,6 +1,17 @@
-package handler;
+package file.handler;
 
+
+import model.handler.*;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,30 +20,41 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
-import model.ShapeList;
+import javax.imageio.ImageIO;
+
+
 
 public class ImagefileHandler {
 	
 	/* 저장하거나 불러올 이미지 파일 */
 	Image img = null;
+	TestCanvas canvas; // 나중에 저장할 캔버스 이름은 따로 지정할것!! 테스트용
+	
 	
 	
 	/**
-	 *  캔버스에 그려진 그림 저장함수.
-	 * @param  path
-	 * @param  object
-	 * @return  성공하면 true 실패하면 false
+	 * 
+	 * @param path  경로
+	 * @param canvas  그림판
+	 * @param format   확장자(jpeg,jpg,png..)
+	 * @throws IOException
 	 */
-	 public  static  void ObjectSave(String path, Object object){
+	 public  static  void ImageSave(String path, Canvas canvas, String format) throws IOException{
 		
-		try {
-			FileOutputStream f = new FileOutputStream(path);			
-			ObjectOutput s = new ObjectOutputStream(f);
-			s.writeObject(object);
-			s.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		 int width = canvas.getWidth();
+		 int height = canvas.getHeight();
+
+
+
+		 
+		 	BufferedImage image = new BufferedImage(width, height , BufferedImage.TYPE_INT_RGB);
+			BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(path)) ;
+
+			Graphics2D graphics = image.createGraphics();
+			canvas.paintAll(graphics);			// canvas 에 있는 모든 객체들을 그린다.
+			image.getGraphics();
+			ImageIO.write(image, format, fos);
+			fos.close();
 	}
 	 
 	     /**
