@@ -139,8 +139,9 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
             g2.setColor(s.getFillColor());
             s.drawFill(g2);
 
-            if(selectIndex == i)
+            if(selectIndex == i) {
                s.drawSelect(g2);
+            }
          }
       }
    }
@@ -352,4 +353,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       canvas.repaint();
    }
    
+   public void clearCmd() {
+	   cmd = 0;
+   }
 }
