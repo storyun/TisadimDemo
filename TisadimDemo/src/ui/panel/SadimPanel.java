@@ -129,7 +129,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
     
             // 이전까지 그렸던 도형 그림
          for(int i=0; i<shapeList.size(); i++) {
-            
+
             Shape s = shapeList.get(i);
 
             g2.setColor(s.getEdgeColor());
@@ -139,9 +139,14 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
             g2.setColor(s.getFillColor());
             s.drawFill(g2);
 
+
             if(selectIndex == i) {
-               s.drawSelect(g2);
+               s.drawSelect(g2, i);
             }
+
+            if(selectIndex == i)
+               s.drawSelect(g2,shapeList.get(i).getId());
+
          }
       }
    }
@@ -259,6 +264,10 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
          isMakeShape=false;
          //다각형이나 선택 모드가 아닐때.
       }
+      else if( shapeId == Shape.SELECT && pointIndex>= 0) {
+         //shape.doResize(e.getPoint(), pointIndex);
+      }      
+
       else if( shapeId == Shape.SELECT && cmd == 1) {
 //          shape.doResize(e.getPoint(), pointIndex);
 //          canvas.repaint();
