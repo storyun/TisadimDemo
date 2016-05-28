@@ -183,8 +183,8 @@ public abstract class Shape implements Serializable{
 		int index = -1;
 		
 		for(int i=0; i<pointList.size(); i++) {
-			if( pointList.get(i).x-5 >= p.x && pointList.get(i).x+5 <= p.x
-					&& pointList.get(i).y-5 >= p.y && pointList.get(i).y+5 <= p.y) {
+			if( pointList.get(i).x-20 <= p.x && pointList.get(i).x+20 >= p.x
+					&& pointList.get(i).y-20 <= p.y && pointList.get(i).y+20 >= p.y) {
 				index = i;
 			}
 		}
