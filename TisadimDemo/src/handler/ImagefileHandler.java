@@ -1,7 +1,6 @@
 package handler;
 
-import java.awt.Color;
-import java.awt.Point;
+import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,18 +8,17 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.Date;
 
 import model.ShapeList;
 
-public  class  FileHandler implements Serializable{
-
+public class ImagefileHandler {
 	
-	ShapeList model = null;
+	/* 저장하거나 불러올 이미지 파일 */
+	Image img = null;
+	
 	
 	/**
-	 *  객체직렬화로 저장함수.
+	 *  캔버스에 그려진 그림 저장함수.
 	 * @param  path
 	 * @param  object
 	 * @return  성공하면 true 실패하면 false
@@ -37,18 +35,20 @@ public  class  FileHandler implements Serializable{
 		}
 	}
 	 
-	 /**
-		 *  객체직렬화로 불러오기 함수.
-		 * @param path		 * 
-		 * @return  ShapeList
+	     /**
+		 *  이미지를 캔버스로 불러오기 함수. 
+		 *  이미지는 수정이 불가능합니다.
+		 *  
+		 * @param 불러올 경로		 * 
+		 * @return  이미지파일
 		 */
-		 public static ShapeList ObjectLoad(String path){
+		 public static Image ObjectLoad(String path){
 			
 			 try {       
 		           FileInputStream in = new FileInputStream(path); 
 		           ObjectInput s = new ObjectInputStream(in); 	           
 		           Object obj = s.readObject();
-		           return (ShapeList)obj;
+		           return (Image)obj;
 		         } 
 		         catch(IOException e) { }     
 		         catch(ClassNotFoundException e) {} 
@@ -56,6 +56,5 @@ public  class  FileHandler implements Serializable{
 		    } 
 
 		
-		 
 	
 }
