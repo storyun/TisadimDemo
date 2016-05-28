@@ -140,7 +140,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 			shape = shapeList.get(shapeList.size()-1);
 			shape.doClick(e.getPoint());
 			
-			canvas.repaint();
+//			canvas.repaint();
 		}
 		else if(shapeId == Shape.CURVE) {
 			isMakeShape = true;
@@ -150,7 +150,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 			shape = shapeList.get(shapeList.size()-1);
 			shape.doClick(e.getPoint());
 			
-			canvas.repaint();
+//			canvas.repaint();
 		}
 		else if(shapeId == Shape.LINE) {
 			isMakeShape = true;
@@ -160,7 +160,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 			shape = shapeList.get(shapeList.size()-1);
 			shape.doClick(e.getPoint());
 			
-			canvas.repaint();
+//			canvas.repaint();
 		}
 		else if(shapeId == Shape.POLYGON && isMakeShape == false) {
 			isMakeShape = true;
@@ -170,7 +170,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 			shape = shapeList.get(shapeList.size()-1);
 			shape.doClick(e.getPoint());
 			
-			canvas.repaint();
+//			canvas.repaint();
 		}
 		else if(shapeId == Shape.RECTANGLE) {
 			isMakeShape = true;
@@ -179,8 +179,6 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 			
 			shape = shapeList.get(shapeList.size()-1);
 			shape.doClick(e.getPoint());
-			
-			canvas.repaint();
 		}
 		else if(shapeId == 0)
 		{
@@ -220,8 +218,10 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		shape.doRelease(e.getPoint());
-		canvas.repaint();
+		if( shape.getId() != Shape.SELECT) {
+			shape.doRelease(e.getPoint());
+			canvas.repaint();
+		}
 	}
 	
 	public void paintComponent(Graphics g){
@@ -258,6 +258,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 			shape.doMove(e.getPoint());
 			
 			canvas.repaint();
+		
 		}
 	}
 
