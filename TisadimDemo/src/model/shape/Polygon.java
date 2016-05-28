@@ -13,9 +13,15 @@ public class Polygon extends Shape{
    
    private boolean isIng;
    private Point currentPoint;
-   private ArrayList<Point> polyPointList;
+   private ArrayList<Point> polyPointList = new ArrayList<Point>();
    
-   public Polygon(Color edgeColor, Color fillColor, float stroke) {
+   public ArrayList<Point> getPolyPointList() {
+   return polyPointList;
+}
+public void setPolyPointList(ArrayList<Point> polyPointList) {
+   this.polyPointList = polyPointList;
+}
+public Polygon(Color edgeColor, Color fillColor, float stroke) {
       super(edgeColor, fillColor, stroke);
       
       isIng = true;
@@ -59,7 +65,7 @@ public class Polygon extends Shape{
       }
       
       Point startPoint = polyPointList.get(START_POINT);
-      Point endPoint = polyPointList.get(getPointList().size()-1);
+      Point endPoint = polyPointList.get(polyPointList.size()-1);
       if(isIng) {
          g.drawLine(endPoint.x, endPoint.y, currentPoint.x, currentPoint.y);
       }
@@ -83,9 +89,11 @@ public class Polygon extends Shape{
       
       // 첫 입력인지 아닌지
       if(polyPointList.size() == 0) {
+        System.out.println(point);
          polyPointList.add(point);   //우리가 그릴 다각형
-         /*pointList.add(point);       //감싸는 사각형을 위한것
-*/         currentPoint = point;
+         pointList.add(point);       //감싸는 사각형을 위한것
+         setPointList(pointList);
+         currentPoint = point;
          
       }
       else {
@@ -101,8 +109,9 @@ public class Polygon extends Shape{
             initialPointList();
          }
          else{
-            /*pointList.add(point);      // 감싸는 사각형에 추가
-*/            polyPointList.add(point);   // 다각형에 추가
+            pointList.add(point);       //감싸는 사각형을 위한것
+             setPointList(pointList);         
+             polyPointList.add(point);   // 다각형에 추가
          }
       }
    }

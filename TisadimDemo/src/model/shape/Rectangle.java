@@ -95,13 +95,6 @@ public class Rectangle extends Shape{
 		
 		initialPointList();
 	}
-	
-	
-	
-	private void initialWidthHeight() {
-		width = getEndPoint().x - getStartPoint().x;
-		height = getEndPoint().y - getStartPoint().y;
-	}
 
 	@Override
 	public void doClick(Point startPoint) {

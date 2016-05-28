@@ -27,6 +27,9 @@ public abstract class Shape implements Serializable{
 //	private BasicStroke basicStroke;
 	private boolean isSelect;
 	
+	protected int width;
+	protected int height;
+	
 	private Point centerPoint;
 	private Point startPoint;
 	private Point endPoint;
@@ -86,19 +89,35 @@ public abstract class Shape implements Serializable{
 			startPoint.setLocation(startPoint.x, p.y);
 			break;
 		case 2:
-			
+			startPoint.setLocation(startPoint.x, p.y);
+			endPoint.setLocation(p.x, endPoint.y);
 			break;
 		case 3:
+			endPoint.setLocation(p.x, endPoint.y);
 			break;
 		case 4:
+			endPoint.setLocation(p);
 			break;
 		case 5:
+			endPoint.setLocation(endPoint.x, p.y);
 			break;
 		case 6:
+			startPoint.setLocation(p.x, startPoint.y);
+			endPoint.setLocation(endPoint.x, p.y);
 			break;
 		case 7:
+			startPoint.setLocation(p.x, startPoint.y);
 			break;
 		}
+		
+		initialWidthHeight();
+		initialCenterPoint();
+		initialPointList();
+	}
+	
+	protected void initialWidthHeight() {
+		width = getEndPoint().x - getStartPoint().x;
+		height = getEndPoint().y - getStartPoint().y;
 	}
 	
 	protected void initialCenterPoint() {
