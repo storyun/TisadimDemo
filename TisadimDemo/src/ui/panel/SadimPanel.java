@@ -180,11 +180,12 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 			shape = shapeList.get(shapeList.size()-1);
 			shape.doClick(e.getPoint());
 		}
-		else if(shapeId == 0)
+		else if(shapeId == Shape.SELECT)
 		{
 			if(shapeList.size() != 0)
 			{
-				selectIndex = shapeList.getSelectIndex();
+				selectIndex = shapeList.getSelectIndex(e.getPoint());
+				shape = shapeList.get(selectIndex);
 			}
 		}
 	}
@@ -217,10 +218,13 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(shapeId != 0)
+		if(shapeId != Shape.SELECT)
 		{
 			shape.doPress(e.getPoint());
 			canvas.repaint();
+		}
+		else if( shapeId == Shape.SELECT && selectIndex >= 0) {
+			
 		}
 	}
 

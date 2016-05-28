@@ -1,5 +1,6 @@
 package model.handler;
 
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.LinkedList;
@@ -36,7 +37,7 @@ public class ShapeList implements Serializable{
 		return shapeList.get(i);
 	}
 	
-	public int getSelectIndex() {
+	public int getSelectIndex(Point point) {
 		int index = -1;
 		
 		return index;
