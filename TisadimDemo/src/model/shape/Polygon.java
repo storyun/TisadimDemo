@@ -80,7 +80,8 @@ public class Polygon extends Shape{
 		}
 		else {
 			// 입력받은점이 시작점과 같은지
-			if(pointList.get(START_POINT).x == point.x && pointList.get(START_POINT).y == point.y) {
+			if(pointList.get(START_POINT).x-5 < point.x && pointList.get(START_POINT).x + 5 > point.x
+					&& pointList.get(START_POINT).y-5 < point.y && pointList.get(START_POINT).y+5 > point.y) {
 				isIng = false;
 				
 				// 최소값 최대값 ,,
