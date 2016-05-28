@@ -3,6 +3,7 @@ package ui;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -19,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.event.MouseInputListener;
 
+import file.handler.ImageHandler;
 import file.handler.ObjectHandler;
 
 import java.awt.event.ActionEvent;
@@ -76,6 +78,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	
 	//가운데 창
 	private SadimPanel mainpanel;
+	private JMenuItem menuItem_1;
 	
 	// 변수
 	
@@ -185,6 +188,10 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		mntmNewMenuItem_1 = new JMenuItem("저장");
 		mntmNewMenuItem_1.addActionListener(this);
 		mnFile.add(mntmNewMenuItem_1);
+		
+		menuItem_1 = new JMenuItem("그림파일로 저장하기");
+		menuItem_1.addActionListener(this);
+		mnFile.add(menuItem_1);
 		
 		mnEdit = new JMenu("편집");
 		menuBar.add(mnEdit);
@@ -342,8 +349,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 			if( fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
 				
 				String path = "";
-				path = fileChooser.getSelectedFile().toString();
-				
+				path = fileChooser.getSelectedFile().toString();				
 				ObjectHandler.ObjectSave(path, mainpanel.getShapeList());
 				
 			}
@@ -354,6 +360,14 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 				path = fileChooser.getSelectedFile().toString();
 				mainpanel.setShapeList( ObjectHandler.ObjectLoad(path));
 				
+				mainpanel.repaintCanvas();
+			}
+		}
+		else if(e.getActionCommand() == menuItem_1.getText()) {
+			if( fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+				String path = "";
+				path = fileChooser.getSelectedFile().toString();
+				 ImageHandler.ImageSave(path, mainpanel.getCanvas() );				
 				mainpanel.repaintCanvas();
 			}
 		}
