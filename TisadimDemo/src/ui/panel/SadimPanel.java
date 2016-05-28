@@ -184,33 +184,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		{
 			if(shapeList.size() != 0)
 			{
-				for(int i=shapeList.size()-1;i>=0;i--)
-				{
-					switch(shapeList.get(i).getId())
-					{
-					case 1: //circle
-					{
-						int a = 0, b = 0; //a : 장축, b : 단축
-						
-						a = (shapeList.get(i).getEndPoint().x-shapeList.get(i).getStartPoint().x)/2;
-						b = (shapeList.get(i).getEndPoint().y-shapeList.get(i).getStartPoint().y)/2;
-						System.out.println(shapeList.get(i).getCenterPoint().x);
-						if(((e.getX()-shapeList.get(i).getCenterPoint().x)*(e.getX()-shapeList.get(i).getCenterPoint().x))/(a*a)
-						+((e.getY()-shapeList.get(i).getCenterPoint().y)*(e.getY()-shapeList.get(i).getCenterPoint().y))/(b*b)<=1)
-						{
-							System.out.println("ERER");
-							Selectshape = true;
-							shapeList.get(i).setSelect(true);
-							break;
-						}
-					}
-					case 2:
-					case 3:
-					case 4:
-					case 5:
-					}
-					
-				}
+				
 			}
 		}
 	}
