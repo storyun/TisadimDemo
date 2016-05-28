@@ -28,7 +28,7 @@ public class ImagefileHandler {
 	
 	/* 저장하거나 불러올 이미지 파일 */
 	Image img = null;
-	TestCanvas canvas; // 나중에 저장할 캔버스 이름은 따로 지정할것!! 테스트용
+//	TestCanvas canvas; // 나중에 저장할 캔버스 이름은 따로 지정할것!! 테스트용
 	
 	
 	
