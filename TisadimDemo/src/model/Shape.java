@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 public abstract class Shape implements Serializable{
 
+	public static final int START_POINT = 0;
+	public static final int END_POINT = 4;
+	
 	public static final int SELECT = 0;
 	public static final int CIRCLE = 1;
 	public static final int RECTANGLE = 2;
@@ -22,6 +25,7 @@ public abstract class Shape implements Serializable{
 	private Color fillColor;
 	private float stroke;
 //	private BasicStroke basicStroke;
+	private boolean isSelect;
 	
 	private Point centerPoint;
 	private Point startPoint;
@@ -49,6 +53,20 @@ public abstract class Shape implements Serializable{
 	public abstract void doClick(Point startPoint);
 	public abstract void doPress(Point endPoint);
 	public abstract void doRelease(Point endPoint);
+	
+	public void drawSelect(Graphics2D g) {
+		g.setColor(Color.BLACK);
+		
+		float[] dash = new float[]{5,5,5,5};
+		g.setStroke(new BasicStroke(1,0,BasicStroke.JOIN_MITER,1.0f,dash,0));
+		g.drawRect(pointList.get(START_POINT).x, pointList.get(START_POINT).y,
+				pointList.get(END_POINT).x - pointList.get(START_POINT).x, pointList.get(END_POINT).y - pointList.get(START_POINT).y);
+		
+		g.setStroke(new BasicStroke(5.0f));
+		for(int i=0; i<pointList.size(); i++) {
+			g.drawRect(pointList.get(i).x, pointList.get(i).y, 1, 1);
+		}
+	}
 	
 	public void doMove(Point currentPoint) {
 	}
@@ -87,7 +105,7 @@ public abstract class Shape implements Serializable{
 		// 2
 		p = new Point();
 		p.x = endPoint.x;
-		p.y = startPoint.x;
+		p.y = startPoint.y;
 		pointList.add(p);
 		
 		// 3
@@ -184,6 +202,14 @@ public abstract class Shape implements Serializable{
 
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
+	}
+
+	public boolean getIsSelect() {
+		return isSelect;
+	}
+
+	public void setSelect(boolean isSelect) {
+		this.isSelect = isSelect;
 	}
 	
 	
