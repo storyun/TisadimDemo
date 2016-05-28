@@ -119,13 +119,13 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		private Graphics bg;
 	 BufferedImage bf = new BufferedImage( 800, 600, BufferedImage.TYPE_INT_ARGB );
 	 BufferStrategy bs = getBufferStrategy(); //Gets the buffer strategy our canvas is currently using
-	  public MyCanvas() {
-		
+	 
+	 public MyCanvas() {		
 	} 
 	   
       @Override
       public void paint(Graphics g) {         
-         super.paint(g);
+        
          Graphics2D g2 = (Graphics2D)canvas.getGraphics();
     
             // 이전까지 그렸던 도형 그림

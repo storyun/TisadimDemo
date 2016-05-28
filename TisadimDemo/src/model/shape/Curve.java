@@ -20,6 +20,7 @@ public class Curve extends Shape{
 	public void drawEdge(Graphics2D g) {
 		// TODO Auto-generated method stub
 		ArrayList<Point> pointList = getPointList();
+		
 		for(int i=1; i<pointList.size(); i++) {
 			Point startPoint = pointList.get(i-1);
 			Point endPoint = pointList.get(i);
@@ -53,6 +54,23 @@ public class Curve extends Shape{
 		initialStartEndPoint();
 		initialCenterPoint();
 	}
+	
+	public void doMove(Point currentPoint, Point movePoint) {
+		int differX = movePoint.x - currentPoint.x;
+		int differY = movePoint.y - currentPoint.y;
+		
+		getStartPoint().setLocation(getStartPoint().x+differX, getStartPoint().y+differY);
+		getEndPoint().setLocation(getEndPoint().x+differX, getEndPoint().y+differY);
+		
+		
+		/*
+		for(int i=0; i<pointList.size(); i++){
+			Point p = ((int)PointList.get(i).getX()+differX , 
+					(int)PointList.get(i).getY()+differY));
+			this.polyPointList.set(i ,  p);
+		}*/
+		
+	}
 
 	private void initialStartEndPoint() {
 		int minX = getPointList().get(START_POINT).x;
@@ -78,6 +96,9 @@ public class Curve extends Shape{
 				maxY = pointList.get(i).y;
 			}
 		}
+		
+		
+		
 		
 		Point startPoint = new Point(minX, minY);
 		Point endPoint = new Point(maxX, maxY);
