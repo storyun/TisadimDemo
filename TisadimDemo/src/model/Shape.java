@@ -7,6 +7,8 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import model.shape.Curve;
+
 public abstract class Shape implements Serializable{
 
 	public static final int START_POINT = 0;
@@ -68,9 +70,8 @@ public abstract class Shape implements Serializable{
 		
 		switch(shapeID)
 		{
-		case 1:
-		case 2:
-		case 3:
+		case CIRCLE:
+		case RECTANGLE:
 		{
 			g.drawRect(pointList.get(START_POINT).x, pointList.get(START_POINT).y,
 					pointList.get(END_POINT).x - pointList.get(START_POINT).x, pointList.get(END_POINT).y - pointList.get(START_POINT).y);
@@ -81,16 +82,70 @@ public abstract class Shape implements Serializable{
 			}
 			break;
 		}
-		case 4: //line
+		case POLYGON:
+		case CURVE:
+		{
+			ArrayList<Point> polylist = new ArrayList<Point>();
+			polylist.add(getStartPoint());
+			
+			Point startPoint = getStartPoint();
+			Point endPoint = getEndPoint();
+			
+			Point p;
+			// 1
+			p = new Point();
+			p.x = (startPoint.x + endPoint.x) / 2;
+			p.y = startPoint.y;
+			polylist.add(p);
+			
+			// 2
+			p = new Point();
+			p.x = endPoint.x;
+			p.y = startPoint.y;
+			polylist.add(p);
+			
+			// 3
+			p = new Point();
+			p.x = endPoint.x;
+			p.y = (startPoint.y + endPoint.y)  / 2;
+			polylist.add(p);
+			
+			// 4
+			p = new Point(endPoint);
+			polylist.add(p);
+			
+			// 5
+			p = new Point();
+			p.x = (startPoint.x + endPoint.x) / 2;
+			p.y = endPoint.y;
+			polylist.add(p);
+			
+			// 6
+			p = new Point();
+			p.x = startPoint.x;
+			p.y = endPoint.y;
+			polylist.add(p);
+			
+			// 7 
+			p = new Point();
+			p.x = startPoint.x;
+			p.y = (startPoint.y + endPoint.y ) /2;
+			polylist.add(p);
+			
+			g.drawRect(polylist.get(START_POINT).x, polylist.get(START_POINT).y,
+					polylist.get(END_POINT).x - polylist.get(START_POINT).x, polylist.get(END_POINT).y - polylist.get(START_POINT).y);
+			
+			g.setStroke(new BasicStroke(5.0f));
+			for(int i=0; i<polylist.size(); i++) {
+				g.drawRect(polylist.get(i).x, polylist.get(i).y, 1, 1);
+			}
+			break;
+		}
+		case LINE:
 		{
 			g.setStroke(new BasicStroke(5.0f));
 			g.drawRect(startPoint.x, startPoint.y, 1, 1);
 			g.drawRect(endPoint.x, endPoint.y, 1, 1);
-			break;
-		}
-		case 5: //curve
-		{
-			
 			break;
 		}
 		}
