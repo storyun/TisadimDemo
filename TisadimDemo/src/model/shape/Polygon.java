@@ -77,7 +77,7 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
    
    @Override
    public void drawFill(Graphics2D g) {
-      // TODO Auto-generated method stub
+     /* // TODO Auto-generated method stub
 //      g.fillRect(getStartPoint().x, getStartPoint().y, width, height);
 	   int[] xList = new int[polyPointList.size()];
 	   int[] yList = new int[polyPointList.size()];
@@ -88,7 +88,7 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
 	   }
 	   
 	   
-	   g.drawPolygon(xList, yList, polyPointList.size());
+	   g.drawPolygon(xList, yList, polyPointList.size());*/
    }
 
    @Override
@@ -179,6 +179,23 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
          this.currentPoint = currentPoint;
       }
    }
+   
+   public void doMove(Point currentPoint, Point movePoint) {
+		int differX = movePoint.x - currentPoint.x;
+		int differY = movePoint.y - currentPoint.y;
+		
+		getStartPoint().setLocation(getStartPoint().x+differX, getStartPoint().y+differY);
+		getEndPoint().setLocation(getEndPoint().x+differX, getEndPoint().y+differY);
+		
+		initialCenterPoint();
+		initialPointList();
+		
+		for(int i=0; i<getPolyPointList().size(); i++){
+			Point p = (new Point((int)polyPointList.get(i).getX()+differX , 
+					(int)polyPointList.get(i).getY()+differY));
+			this.polyPointList.set(i ,  p);
+		}
+	}
    
 
    //getter, setter
