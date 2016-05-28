@@ -31,12 +31,6 @@ import javax.swing.SwingConstants;
 
 public class SadimFrame extends JFrame  implements ActionListener, MouseInputListener {
 	
-	//도형 변수
-	private int shapeId;
-	private Color edgeColor;
-	private Color fillColor;
-	private float border;
-	
 	//메뉴 상단바 변수
 	private JMenuBar menuBar;
 	private JMenu mnFile;
@@ -79,9 +73,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		this.setSize(new Dimension(850, 650));
 		
 		//initialization
-		shapeId = 0;
-		edgeColor = Color.BLACK;
-		fillColor = Color.black;
+		
 	
 		//왼쪽 편집창
 		panel = new JPanel();
@@ -202,7 +194,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		mnView.add(chckbxmntmNewCheckItem_1);
 		
 		//가운데
-		mainpanel = new SadimPanel(shapeId, edgeColor, fillColor, spinner.getValue().toString());
+		mainpanel = new SadimPanel();
 		getContentPane().add(mainpanel, BorderLayout.CENTER);
 	}
 
@@ -264,37 +256,37 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	public void actionPerformed(ActionEvent e) {
 		//그림 선택
 		if(e.getSource() == btnSelect) {
-			shapeId = Shape.SELECT;			
+			 mainpanel.setShapeId(Shape.SELECT);			
 		}
 		//원 선택
 		else if(e.getSource() == btnCircle) {
-			shapeId = Shape.CIRCLE;
+			mainpanel.setShapeId(Shape.CIRCLE);
 		}
 		//사각형 선택
 		else if(e.getSource() == btnRectangle) {
-			shapeId = Shape.RECTANGLE;
+			mainpanel.setShapeId(Shape.RECTANGLE);
 		}
 		//다각형 선택
 		else if(e.getSource() == btnPolygon) {
-			shapeId = Shape.POLYGON;
+			mainpanel.setShapeId(Shape.POLYGON);
 		}
 		//곡선 선택
 		else if(e.getSource() == btnCurve) {
-			shapeId = Shape.CURVE;
+			mainpanel.setShapeId(Shape.CURVE);
 		}
 		//직선 선택
 		else if(e.getSource() == btnLine) {
-			shapeId = Shape.LINE;
+			mainpanel.setShapeId(Shape.LINE);
 		}
 		//선 색 선택
 		else if(e.getSource() == btnEdgecolor) {
-			edgeColor = JColorChooser.showDialog(this, "색을 선택하세요", edgeColor);
-			btnEdgecolor.setBackground(edgeColor);
+			mainpanel.setEdgeColor(JColorChooser.showDialog(this, "색을 선택하세요", mainpanel.getEdgeColor()));
+			btnEdgecolor.setBackground(mainpanel.getEdgeColor());
 		}
 		//도형 내부 칠할 색 선택
 		else if(e.getSource() == btnFillcolor) {
-			fillColor = JColorChooser.showDialog(this, "색을 선택하세요", fillColor);
-			btnFillcolor.setBackground(fillColor);
+			mainpanel.setFillColor(JColorChooser.showDialog(this, "색을 선택하세요", mainpanel.getFillColor()));
+			btnFillcolor.setBackground(mainpanel.getEdgeColor());
 		}
 	}
 }

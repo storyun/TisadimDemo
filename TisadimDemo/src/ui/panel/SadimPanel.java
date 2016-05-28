@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.font.ShapeGraphicAttribute;
 
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.event.MouseInputListener;
 
 import model.Shape;
@@ -44,17 +45,16 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 
 	ShapeList shapeList;
 	
-	public SadimPanel(int shapeId, Color edgeColor, Color fillcolor, String borderstring) {
+	public SadimPanel() {
 		super();
 		
 		this.setSize(new Dimension(800, 600));
 		setLayout(null);
 		
 		//init
-		setShapeId(shapeId);
-		setEdgeColor(edgeColor);
-		setFillColor(fillcolor);
-		setBorder(Float.valueOf(borderstring).floatValue());
+		shapeId = 0;
+		edgeColor = Color.BLACK;
+		fillColor = Color.black;
 		
 		canvas = new MyCanvas();
 		canvas.setBounds(0, 0, 800, 600);
@@ -119,6 +119,12 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
 		if( shapeId == Shape.CIRCLE) {
 			circle = new Circle(edgeColor, fillColor, border);
 			shapeList.addShape(circle);
@@ -141,13 +147,6 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		shape = shapeList.get(shapeList.size()-1);
 		shape.doClick(e.getPoint());
 		
-		canvas.repaint();
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		shape.doPress(e.getPoint());
 		canvas.repaint();
 	}
 
@@ -178,7 +177,8 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		shape.doPress(e.getPoint());
+		canvas.repaint();
 	}
 
 	@Override
@@ -186,6 +186,8 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		// TODO Auto-generated method stub
 		if( shapeId == Shape.POLYGON) {
 			shape.doMove(e.getPoint());
+			
+			canvas.repaint();
 		}
 	}
 
@@ -194,6 +196,21 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		// TODO Auto-generated method stub
 		
 	}
+	// getter , setter
+
+	public int getShapeId() {
+		return shapeId;
+	}
+
+	public Color getEdgeColor() {
+		return edgeColor;
+	}
+
+	public Color getFillColor() {
+		return fillColor;
+	}
+	
+	
 	
 	
 }
