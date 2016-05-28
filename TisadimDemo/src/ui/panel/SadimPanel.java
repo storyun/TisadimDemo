@@ -57,6 +57,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		shapeId = 0;
 		edgeColor = Color.BLACK;
 		fillColor = Color.black;
+		border = 1;
 		
 		canvas = new MyCanvas();
 		canvas.setBounds(0, 0, 800, 600);
