@@ -17,7 +17,7 @@ public class Line extends Shape{
 	}
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void drawEdge(Graphics2D g) {
 		// TODO Auto-generated method stub
 		
 		g.drawLine(getStartPoint().x, getStartPoint().y, getEndPoint().x, getEndPoint().y);

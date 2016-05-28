@@ -15,7 +15,7 @@ public class Curve extends Shape{
 		super(edgeColor, fillColor, stroke);
 	}
 	@Override
-	public void draw(Graphics2D g) {
+	public void drawEdge(Graphics2D g) {
 		// TODO Auto-generated method stub
 		ArrayList<Point> pointList = getPointList();
 		for(int i=1; i<pointList.size(); i++) {
