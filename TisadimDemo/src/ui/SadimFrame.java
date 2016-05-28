@@ -78,17 +78,12 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	private SadimPanel mainpanel;
 	
 	// 변수
-	ShapeStack beforeStack;
-	ShapeStack afterStack;
 	
 	public SadimFrame() {
 		super();
 		this.setSize(new Dimension(850, 650));
 		
 		//initialization
-		beforeStack = new ShapeStack();
-		afterStack = new ShapeStack();
-		
 	
 		//왼쪽 편집창
 		panel = new JPanel();

@@ -16,47 +16,37 @@ public class ShapeStack implements Serializable{
 	 */
 	
 	
-	private Stack<Shape> updatedstack;
+	private Stack<Shape> beforeStack;
+	private Stack<Shape> afterStack;
 	
 	public ShapeStack() {
-		updatedstack = new Stack<Shape>();		
+		beforeStack = new Stack<Shape>();
+		afterStack = new Stack<>();
 	}
 	
-	/**
-	 * 전부 날린다.
-	 */
-	public void clear() {
-		updatedstack = new Stack<Shape>();
+	public int getBeforeStackSize() {
+		return beforeStack.size();
 	}
 	
-	/**
-	 * 
-	 * @param 도형 push
-	 */
-	public void addShape(Shape s) {
-		updatedstack.push(s);
+	public int getAfterStackSize() {
+		return afterStack.size();
 	}
+	
+	public void pushBeforeStack(Shape s) {
+		afterStack.clear();
+		beforeStack.push(s);
+	}
+	
+	public Shape popBeforeStack() {
+		Shape s = beforeStack.pop();
+		afterStack.push(s);
 		
-	/**
-	 * 
-	 * @return stack의 사이즈 반환
-	 */
-		
-	public int size() {
-		return updatedstack.size();
+		return s;
 	}
-	/**
-	 * 
-	 * @return 스택의 맨위값을 리턴
-	 */
-	public Shape pop() {
-		return updatedstack.pop();
-	}
-	/**
-	 * 
-	 * @return 맨 위의 값이 무엇인지 확인만/ 없애지는 않는다.
-	 */
-	public Shape peek(){
-		return updatedstack.peek();
+	
+	public Shape popAfterStack() {
+		Shape s = afterStack.pop();
+		beforeStack.push(s);
+		return s;
 	}
 }
