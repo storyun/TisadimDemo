@@ -81,8 +81,8 @@ public abstract class Shape implements Serializable{
 	protected void initialCenterPoint() {
 		Point p = new Point();
 		
-		p.x = (getStartPoint().x + ((getEndPoint().x-getStartPoint().x)/2))/2;
-		p.y = (getStartPoint().y + ((getEndPoint().y-getStartPoint().y)/2))/2;
+		p.x = (getStartPoint().x + getEndPoint().x)/2;
+		p.y = (getStartPoint().y + getEndPoint().y)/2;
 		
 		centerPoint = p;
 	}
