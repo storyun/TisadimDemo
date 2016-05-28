@@ -35,4 +35,10 @@ public class ShapeList implements Serializable{
 	public Shape get(int i) {
 		return shapeList.get(i);
 	}
+	
+	public int getSelectIndex() {
+		int index = -1;
+		
+		return index;
+	}
 }

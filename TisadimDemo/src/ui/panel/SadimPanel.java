@@ -46,11 +46,11 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	private Polygon polygon;
 	private Shape shape;
 	
-	private boolean Selectshape;
+	private int selectIndex;
 
-	ShapeList shapeList;
+	private ShapeList shapeList;
 	
-	boolean isMakeShape;
+	private boolean isMakeShape;
 	
 	public SadimPanel(SadimFrame mainFrame) {
 		super();
@@ -64,7 +64,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		fillColor = Color.black;
 		border = 1;
 		isMakeShape = false;
-		Selectshape = false;
+		selectIndex = -1;
 		
 		canvas = new MyCanvas();
 		canvas.setBounds(0, 0, 800, 600);
@@ -115,7 +115,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 				g2.setColor(s.getFillColor());
 				s.drawFill(g2);
 
-				if(Selectshape && s.getIsSelect())
+				if(selectIndex == i)
 					s.drawSelect(g2);
 			}
 		}
@@ -184,7 +184,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		{
 			if(shapeList.size() != 0)
 			{
-				
+				selectIndex = shapeList.getSelectIndex();
 			}
 		}
 	}
