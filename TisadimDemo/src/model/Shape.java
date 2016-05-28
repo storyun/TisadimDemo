@@ -51,6 +51,9 @@ public abstract class Shape implements Serializable{
 	public abstract void doPress(Point endPoint);
 	public abstract void doRelease(Point endPoint);
 	
+	public void doMove(Point currentPoint) {
+	}
+	
 	public void move(Graphics2D g, Point p) {
 		
 	}

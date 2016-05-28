@@ -12,6 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JColorChooser;
 import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
@@ -25,6 +26,7 @@ import model.Shape;
 import ui.panel.SadimPanel;
 
 import javax.swing.JSpinner;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
 public class SadimFrame extends JFrame  implements ActionListener, MouseInputListener {
@@ -55,17 +57,19 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	
 	//왼쪽 편집 창
 	private JPanel panel;
-	private JButton btnSelect;
-	private JButton btnCircle;
-	private JButton btnRectangle;
-	private JButton btnPolygon;
-	private JButton btnCurve;
-	private JButton btnLine;
+	private JToggleButton btnSelect;
+	private JToggleButton btnCircle;
+	private JToggleButton btnRectangle;
+	private JToggleButton btnPolygon;
+	private JToggleButton btnCurve;
+	private JToggleButton btnLine;
 	private JButton btnEdgecolor;
 	private JButton btnFillcolor;
 	private JSlider slider;
 	private JLabel lblBorder;
 	private JSpinner spinner;
+	
+	private ButtonGroup buttonGruop;
 	
 	//가운데 창
 	private SadimPanel mainpanel;
@@ -85,27 +89,27 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		panel.setPreferredSize(new Dimension(175, 300));
 		getContentPane().add(panel, BorderLayout.WEST);
 				
-		btnSelect = new JButton("Select");
+		btnSelect = new JToggleButton("Select");
 		btnSelect.setBounds(1, 1, 174, 43);
 		panel.add(btnSelect);
 				
-		btnCircle = new JButton("Circle");
+		btnCircle = new JToggleButton("Circle");
 		btnCircle.setBounds(1, 45, 174, 43);
 		panel.add(btnCircle);
 				
-		btnRectangle = new JButton("Rectangle");
+		btnRectangle = new JToggleButton("Rectangle");
 		btnRectangle.setBounds(1, 89, 174, 43);
 		panel.add(btnRectangle);
 				
-		btnPolygon = new JButton("Polygon");
+		btnPolygon = new JToggleButton("Polygon");
 		btnPolygon.setBounds(1, 133, 174, 43);
 		panel.add(btnPolygon);
 				
-		btnCurve = new JButton("Curve");
+		btnCurve = new JToggleButton("Curve");
 		btnCurve.setBounds(1, 177, 174, 43);
 		panel.add(btnCurve);
 				
-		btnLine = new JButton("Line");
+		btnLine = new JToggleButton("Line");
 		btnLine.setBounds(1, 221, 174, 43);
 		panel.add(btnLine);
 				
@@ -121,6 +125,24 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		lblBorder.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBorder.setBounds(1, 353, 86, 43);
 		panel.add(lblBorder);
+		
+		// button group
+		buttonGruop = new ButtonGroup();
+		buttonGruop.add(btnCircle);
+		buttonGruop.add(btnCurve);
+		buttonGruop.add(btnLine);
+		buttonGruop.add(btnPolygon);
+		buttonGruop.add(btnRectangle);
+		buttonGruop.add(btnSelect);
+		
+		// button listener
+		btnCircle.addActionListener(this);
+		btnCurve.addActionListener(this);
+		btnLine.addActionListener(this);
+		btnPolygon.addActionListener(this);
+		btnPolygon.addActionListener(this);
+		btnRectangle.addActionListener(this);
+		btnSelect.addActionListener(this);
 				
 		spinner = new JSpinner();
 		spinner.setBounds(87, 356, 87, 35);
