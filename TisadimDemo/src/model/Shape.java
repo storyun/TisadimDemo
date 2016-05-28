@@ -17,8 +17,6 @@ public abstract class Shape implements Serializable{
 	public static final int CURVE = 5;
 	
 	private int id;
-	private Point startPoint;
-	private Point endPoint;
 	private ArrayList<Point> pointList;
 	private Color edgeColor;
 	private Color fillColor;
@@ -41,11 +39,14 @@ public abstract class Shape implements Serializable{
 		this.stroke = stroke;
 		
 		basicStroke = new BasicStroke(stroke);
+		
+		pointList = new ArrayList<Point>();
 	}
 	
 	public abstract void draw(Graphics2D g);
+	public abstract void doClick(Point startPoint);
 	public abstract void doPress(Point endPoint);
-	public abstract void dpRelease(Point endPoint);
+	public abstract void doRelease(Point endPoint);
 	
 	public void move(Graphics2D g, Point p) {
 		
@@ -53,4 +54,64 @@ public abstract class Shape implements Serializable{
 	public void rotate(Graphics2D g, Point p) {
 		
 	}
+
+	
+	// setter, getter
+	
+	protected int getId() {
+		return id;
+	}
+
+	protected void setId(int id) {
+		this.id = id;
+	}
+
+	protected ArrayList<Point> getPointList() {
+		return pointList;
+	}
+
+	protected void setPointList(ArrayList<Point> pointList) {
+		this.pointList = pointList;
+	}
+
+	protected Color getEdgeColor() {
+		return edgeColor;
+	}
+
+	protected void setEdgeColor(Color edgeColor) {
+		this.edgeColor = edgeColor;
+	}
+
+	protected Color getFillColor() {
+		return fillColor;
+	}
+
+	protected void setFillColor(Color fillColor) {
+		this.fillColor = fillColor;
+	}
+
+	protected float getStroke() {
+		return stroke;
+	}
+
+	protected void setStroke(float stroke) {
+		this.stroke = stroke;
+	}
+
+	protected BasicStroke getBasicStroke() {
+		return basicStroke;
+	}
+
+	protected void setBasicStroke(BasicStroke basicStroke) {
+		this.basicStroke = basicStroke;
+	}
+
+	protected Point getCenterPoint() {
+		return centerPoint;
+	}
+
+	protected void setCenterPoint(Point centerPoint) {
+		this.centerPoint = centerPoint;
+	}
+	
 }
