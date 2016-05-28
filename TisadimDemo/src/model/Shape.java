@@ -22,7 +22,10 @@ public abstract class Shape implements Serializable{
 	private Color fillColor;
 	private float stroke;
 	private BasicStroke basicStroke;
+	
 	private Point centerPoint;
+	private Point startPoint;
+	private Point endPoint;
 	
 	public Shape() {
 		
@@ -45,14 +48,23 @@ public abstract class Shape implements Serializable{
 	
 	public abstract void draw(Graphics2D g);
 	public abstract void doClick(Point startPoint);
-	public abstract void doPress(Point endPoint);
-	public abstract void doRelease(Point endPoint);
+	public void doPress(Point endPoint) {}
+	public void doRelease(Point endPoint) {}
 	
 	public void move(Graphics2D g, Point p) {
 		
 	}
 	public void rotate(Graphics2D g, Point p) {
 		
+	}
+	
+	protected void initialCenterPoint() {
+		Point p = new Point();
+		
+		p.x = (getStartPoint().x + getEndPoint().y)/2;
+		p.y = (getStartPoint().y + getEndPoint().y)/2;
+		
+		centerPoint = p;
 	}
 
 	
@@ -113,5 +125,22 @@ public abstract class Shape implements Serializable{
 	protected void setCenterPoint(Point centerPoint) {
 		this.centerPoint = centerPoint;
 	}
+
+	protected Point getStartPoint() {
+		return startPoint;
+	}
+
+	protected void setStartPoint(Point startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	protected Point getEndPoint() {
+		return endPoint;
+	}
+
+	protected void setEndPoint(Point endPoint) {
+		this.endPoint = endPoint;
+	}
+	
 	
 }

@@ -15,9 +15,6 @@ public class Rectangle extends Shape{
 	private int width;
 	private int height;
 	
-	private Point startPoint;
-	private Point endPoint;
-	
 	public Rectangle(Color edgeColor, Color fillColor, float stroke) {
 		super(edgeColor, fillColor, stroke);
 		
@@ -29,14 +26,14 @@ public class Rectangle extends Shape{
 	@Override
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
-		g.drawRect(startPoint.x, startPoint.y, width, height);
+		g.drawRect(getStartPoint().x, getStartPoint().y, width, height);
 	}
 
 	@Override
 	public void doPress(Point endPoint) {
 		// TODO Auto-generated method stub
 		
-		this.endPoint = endPoint;
+		setEndPoint(endPoint);
 		initialRealPoint();
 		initialWidthHeight();
 		
@@ -44,37 +41,34 @@ public class Rectangle extends Shape{
 	
 	private void initialRealPoint() {
 		
-		if( startPoint.x < endPoint.x && startPoint.y < endPoint.y) return;
+		if( getStartPoint().x < getEndPoint().x && getStartPoint().y < getEndPoint().y) return;
 		
 		Point realStartPoint = new Point();
 		Point realEndPoint = new Point();
 		
-		if( startPoint.x >= endPoint.x) {
-			realStartPoint.x = endPoint.x;
-			realEndPoint.x = startPoint.x;
+		if( getStartPoint().x >= getEndPoint().x) {
+			realStartPoint.x = getEndPoint().x;
+			realEndPoint.x = getStartPoint().x;
 		}
-		else if(startPoint.x < endPoint.x) {
-			realStartPoint.x = startPoint.x;
-			realEndPoint.x = endPoint.x;
-		}
-		
-		if( startPoint.y >= endPoint.y) {
-			realStartPoint.y = endPoint.y;
-			realEndPoint.y = startPoint.y;
-		}
-		else if(startPoint.y < endPoint.y) {
-			realStartPoint.y = startPoint.y;
-			realEndPoint.y = endPoint.y;
+		else if(getStartPoint().x < getEndPoint().x) {
+			realStartPoint.x = getStartPoint().x;
+			realEndPoint.x = getEndPoint().x;
 		}
 		
-		startPoint = realStartPoint;
-		endPoint = realEndPoint;
+		if( getStartPoint().y >= getEndPoint().y) {
+			realStartPoint.y = getEndPoint().y;
+			realEndPoint.y = getStartPoint().y;
+		}
+		else if(getStartPoint().y < getEndPoint().y) {
+			realStartPoint.y = getStartPoint().y;
+			realEndPoint.y = getEndPoint().y;
+		}
+		
+		setStartPoint(realStartPoint);
+		setEndPoint(realEndPoint);
 	}
 	
-	private void initialWidthHeight() {
-		width = endPoint.x - startPoint.x;
-		height = endPoint.y - startPoint.y;
-	}
+	
 
 	@Override
 	public void doRelease(Point endPoint) {
@@ -87,13 +81,11 @@ public class Rectangle extends Shape{
 		initialPointList();
 	}
 	
-	private void initialCenterPoint() {
-		Point p = new Point();
-		
-		p.x = (startPoint.x + endPoint.y)/2;
-		p.y = (startPoint.y + endPoint.y)/2;
-		
-		setCenterPoint(p);
+	
+	
+	private void initialWidthHeight() {
+		width = getEndPoint().x - getStartPoint().x;
+		height = getEndPoint().y - getStartPoint().y;
 	}
 	
 	private void initialPointList() {
@@ -103,6 +95,6 @@ public class Rectangle extends Shape{
 	@Override
 	public void doClick(Point startPoint) {
 		// TODO Auto-generated method stub
-		this.startPoint = startPoint;
+		setStartPoint(startPoint);
 	}
 }
