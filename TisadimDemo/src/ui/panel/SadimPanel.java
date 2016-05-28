@@ -20,6 +20,7 @@ public class SadimPanel extends JPanel{
 	private Canvas canvas;
 
 
+
 	public SadimPanel(int shapeId, Color edgeColor, Color fillColor) {
 		super();
 		
