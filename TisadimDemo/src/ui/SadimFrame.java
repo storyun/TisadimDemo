@@ -27,6 +27,7 @@ import java.awt.event.MouseEvent;
 
 import model.Shape;
 import model.handler.ShapeList;
+import model.handler.ShapeStack;
 import ui.panel.SadimPanel;
 
 import javax.swing.JSpinner;
@@ -44,6 +45,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	private JMenuItem mntmNewMenuItem_1;
 	private JMenu mnEdit;
 	private JMenuItem mntmNewMenuItem_2;
+	private JMenuItem mntmNewMenuItem_9;
 	private JMenuItem mntmNewMenuItem_3;
 	private JMenuItem mntmNewMenuItem_4;
 	private JMenuItem mntmNewMenuItem_5;
@@ -75,11 +77,17 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	//가운데 창
 	private SadimPanel mainpanel;
 	
+	// 변수
+	ShapeStack beforeStack;
+	ShapeStack afterStack;
+	
 	public SadimFrame() {
 		super();
 		this.setSize(new Dimension(850, 650));
 		
 		//initialization
+		beforeStack = new ShapeStack();
+		afterStack = new ShapeStack();
 		
 	
 		//왼쪽 편집창
@@ -187,18 +195,33 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		menuBar.add(mnEdit);
 		
 		mntmNewMenuItem_2 = new JMenuItem("실행 취소");
+		mntmNewMenuItem_2.setEnabled(false);
+		mntmNewMenuItem_2.addActionListener(this);
 		mnEdit.add(mntmNewMenuItem_2);
 		
+		mntmNewMenuItem_9 = new JMenuItem("되돌리기");
+		mntmNewMenuItem_9.setEnabled(false);
+		mntmNewMenuItem_9.addActionListener(this);
+		mnEdit.add(mntmNewMenuItem_9);
+		
 		mntmNewMenuItem_3 = new JMenuItem("잘라내기");
+		mntmNewMenuItem_3.setEnabled(false);
+		mntmNewMenuItem_3.addActionListener(this);
 		mnEdit.add(mntmNewMenuItem_3);
 		
 		mntmNewMenuItem_4 = new JMenuItem("복사");
+		mntmNewMenuItem_4.setEnabled(false);
+		mntmNewMenuItem_4.addActionListener(this);
 		mnEdit.add(mntmNewMenuItem_4);
 		
 		mntmNewMenuItem_5 = new JMenuItem("붙여넣기");
+		mntmNewMenuItem_5.setEnabled(false);
+		mntmNewMenuItem_5.addActionListener(this);
 		mnEdit.add(mntmNewMenuItem_5);
 		
 		mntmNewMenuItem_6 = new JMenuItem("삭제");
+		mntmNewMenuItem_6.setEnabled(false);
+		mntmNewMenuItem_6.addActionListener(this);
 		mnEdit.add(mntmNewMenuItem_6);
 		
 		mnView = new JMenu("보기");
@@ -335,18 +358,99 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 				path = fileChooser.getSelectedFile().toString();
 				mainpanel.setShapeList( ObjectHandler.ObjectLoad(path));
 				
-				mainpanel.repaint();
+				mainpanel.repaintCanvas();
 			}
 		}
 		else if(e.getActionCommand() == menuItem.getText()) {
 			mainpanel.getShapeList().clear();
 			mainpanel.repaintCanvas();
 		}
+		else if(e.getActionCommand() == mntmNewMenuItem_2.getText()) {
+			//실행취소
+			
+		}
+		else if(e.getActionCommand() == mntmNewMenuItem_9.getText()) {
+			// 되돌리기
+		}
+		else if(e.getActionCommand() == mntmNewMenuItem_3.getText()) {
+			// 잘라내기
+		}
+		else if(e.getActionCommand() == mntmNewMenuItem_4.getText()) {
+			// 복사
+		}
+		else if(e.getActionCommand() == mntmNewMenuItem_5.getText()) {
+			// 붙여넣기
+		}
+		else if(e.getActionCommand() == mntmNewMenuItem_6.getText()) {
+			// 삭제
+		}
 	}
 
 	public JSpinner getSpinner() {
 		return spinner;
 	}
-	
-	
+
+	public JMenuItem getMntmNewMenuItem_2() {
+		return mntmNewMenuItem_2;
+	}
+
+	public void setMntmNewMenuItem_2(JMenuItem mntmNewMenuItem_2) {
+		this.mntmNewMenuItem_2 = mntmNewMenuItem_2;
+	}
+
+	public JMenuItem getMntmNewMenuItem_9() {
+		return mntmNewMenuItem_9;
+	}
+
+	public void setMntmNewMenuItem_9(JMenuItem mntmNewMenuItem_9) {
+		this.mntmNewMenuItem_9 = mntmNewMenuItem_9;
+	}
+
+	public JMenuItem getMntmNewMenuItem_3() {
+		return mntmNewMenuItem_3;
+	}
+
+	public void setMntmNewMenuItem_3(JMenuItem mntmNewMenuItem_3) {
+		this.mntmNewMenuItem_3 = mntmNewMenuItem_3;
+	}
+
+	public JMenuItem getMntmNewMenuItem_4() {
+		return mntmNewMenuItem_4;
+	}
+
+	public void setMntmNewMenuItem_4(JMenuItem mntmNewMenuItem_4) {
+		this.mntmNewMenuItem_4 = mntmNewMenuItem_4;
+	}
+
+	public JMenuItem getMntmNewMenuItem_5() {
+		return mntmNewMenuItem_5;
+	}
+
+	public void setMntmNewMenuItem_5(JMenuItem mntmNewMenuItem_5) {
+		this.mntmNewMenuItem_5 = mntmNewMenuItem_5;
+	}
+
+	public JMenuItem getMntmNewMenuItem_6() {
+		return mntmNewMenuItem_6;
+	}
+
+	public void setMntmNewMenuItem_6(JMenuItem mntmNewMenuItem_6) {
+		this.mntmNewMenuItem_6 = mntmNewMenuItem_6;
+	}
+
+	public JMenuItem getMntmNewMenuItem_7() {
+		return mntmNewMenuItem_7;
+	}
+
+	public void setMntmNewMenuItem_7(JMenuItem mntmNewMenuItem_7) {
+		this.mntmNewMenuItem_7 = mntmNewMenuItem_7;
+	}
+
+	public JMenuItem getMntmNewMenuItem_8() {
+		return mntmNewMenuItem_8;
+	}
+
+	public void setMntmNewMenuItem_8(JMenuItem mntmNewMenuItem_8) {
+		this.mntmNewMenuItem_8 = mntmNewMenuItem_8;
+	}
 }
