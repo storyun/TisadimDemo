@@ -52,6 +52,8 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
    
    private int selectIndex;
    private int pointIndex;
+   private int cmd;			// 1 : resize, 2, move
+   private Point point;
 
    private ShapeList shapeList;
    
@@ -67,11 +69,13 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       this.mainFrame = mainFrame;
       shapeId = 0;
       edgeColor = Color.BLACK;
-      fillColor = Color.black;
+      fillColor = new Color(0, 0, 0, 0);
       border = 1;
       isMakeShape = false;
       selectIndex = -1;
-        
+      pointIndex = -1;
+      cmd = 0;
+
       canvas = new MyCanvas();
       canvas.setBounds(0, 0, 800, 600);
       canvas.setBackground(Color.white);
@@ -216,29 +220,30 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       {
          if(shapeList.size() != 0)
          {
-            // pointlist에 해당하는지 확인
-            if(selectIndex >= 0) {
-               pointIndex = shape.selectPoint(e.getPoint());
-               if( pointIndex >= 0 ) {
-                  // resize
-               } 
-               else {
-                  // inner ?
-                  if ( selectIndex == shapeList.getSelectIndex(e.getPoint()))  {
-                     //move
-                  }
-                  // outer ?
-                  else {
-                     selectIndex = shapeList.getSelectIndex(e.getPoint());
-                     if( selectIndex >= 0) shape = shapeList.get(selectIndex);
-                  }
-               }
-            }
-            else { 
-               selectIndex = shapeList.getSelectIndex(e.getPoint());
-               if( selectIndex >= 0) 
-            	   shape = shapeList.get(selectIndex);
-            }
+        	 if( selectIndex >= 0) {
+        		 pointIndex = shape.selectPoint(e.getPoint());
+        		 if( pointIndex >= 0) {
+        			cmd = 1;
+        		 }
+        		 else if( selectIndex == shapeList.getSelectIndex(e.getPoint()) ) {
+        			 // move
+        			 cmd = 2;
+        			 point = e.getPoint();
+        			 
+        		 }
+        		 else {
+        			 selectIndex = shapeList.getSelectIndex(e.getPoint());
+            		 if( selectIndex >= 0) {
+            			 shape = shapeList.get(selectIndex);
+            		 }
+        		 }
+        	 }
+        	 else {	// 도형 선택
+        		 selectIndex = shapeList.getSelectIndex(e.getPoint());
+        		 if( selectIndex >= 0) {
+        			 shape = shapeList.get(selectIndex);
+        		 }
+        	 }
          }
       }
       canvas.repaint();
@@ -256,7 +261,17 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       else if( shapeId == Shape.SELECT && pointIndex>= 0) {
          //shape.doResize(e.getPoint(), pointIndex);
       }      
-    
+
+      else if( shapeId == Shape.SELECT && cmd == 1) {
+//          shape.doResize(e.getPoint(), pointIndex);
+//          canvas.repaint();
+    	  pointIndex = -1;
+    	  cmd = 0;
+       }   
+      else if( shapeId == Shape.SELECT && cmd == 2 ) {
+    	  cmd = 0;
+    	  point = null;
+      }
       else if(shapeId == Shape.POLYGON ){
                Polygon poly = (Polygon)shape;
                /**만약 다각형을 그리는 순간이끝났다면   **/
@@ -289,8 +304,15 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
          shape.doPress(e.getPoint());
          canvas.repaint();
       }
-      else if( shapeId == Shape.SELECT && selectIndex >= 0) {
-         
+      else if( shapeId == Shape.SELECT && cmd == 1) {
+          shape.doResize(e.getPoint(), pointIndex);
+          canvas.repaint();
+       }
+      else if( shapeId == Shape.SELECT && cmd == 2) {
+    	  shape.doMove(point, e.getPoint());
+    	  
+    	  canvas.repaint();
+    	  point = e.getPoint();
       }
    }
 

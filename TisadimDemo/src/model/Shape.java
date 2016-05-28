@@ -154,9 +154,18 @@ public abstract class Shape implements Serializable{
 	public void doMove(Point currentPoint) {
 	}
 	
-	public void move(Graphics2D g, Point p) {
+	public void doMove(Point currentPoint, Point movePoint) {
+		int differX = movePoint.x - currentPoint.x;
+		int differY = movePoint.y - currentPoint.y;
 		
+		startPoint.setLocation(startPoint.x+differX, startPoint.y+differY);
+		endPoint.setLocation(startPoint.x+width, startPoint.y+height);
+		
+		initialCenterPoint();
+		initialPointList();
 	}
+	
+	
 	public void rotate(Graphics2D g, Point p) {
 		
 	}
@@ -210,7 +219,7 @@ public abstract class Shape implements Serializable{
 	}
 
 	protected void initialPointList() {
-		ArrayList<Point> pointList = getPointList();
+		ArrayList<Point> pointList = new ArrayList<Point>();
 		
 		pointList.add(getStartPoint());
 		
@@ -257,6 +266,8 @@ public abstract class Shape implements Serializable{
 		p.x = startPoint.x;
 		p.y = (startPoint.y + endPoint.y ) /2;
 		pointList.add(p);
+		
+		this.pointList = pointList;
 	}
 	
 	public int selectPoint(Point p) {
