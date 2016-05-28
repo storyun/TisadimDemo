@@ -43,10 +43,10 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
       double result = dx2 +dy2;
               
       if( result <= (rad*rad) ){
-         System.out.println(result - rad*rad);
+         
          return true;
       }else{
-         System.out.println(result - rad*rad);
+       
          return false;
       }
          
@@ -89,7 +89,7 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
       
       // 첫 입력인지 아닌지
       if(polyPointList.size() == 0) {
-        System.out.println(point);
+       
          polyPointList.add(point);   //우리가 그릴 다각형
          pointList.add(point);       //감싸는 사각형을 위한것
          setPointList(pointList);

@@ -1,14 +1,17 @@
 package ui.panel;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.font.ShapeGraphicAttribute;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -67,7 +70,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       border = 1;
       isMakeShape = false;
       selectIndex = -1;
-      
+        
       canvas = new MyCanvas();
       canvas.setBounds(0, 0, 800, 600);
       canvas.setBackground(Color.white);
@@ -98,8 +101,16 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       border = a;
    }
    
+   
+   
+   /** 캔버스 클래스 입니다. **/
    private class MyCanvas extends Canvas {
-      
+	 
+	 BufferedImage bf = new BufferedImage( 800, 600, BufferedImage.TYPE_INT_ARGB );
+	  public MyCanvas() {
+		
+	} 
+	   
       @Override
       public void paint(Graphics g) {         
          super.paint(g);
