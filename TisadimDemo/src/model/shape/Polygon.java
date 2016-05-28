@@ -76,6 +76,7 @@ public class Polygon extends Shape{
 		// 첫 입력인지 아닌지
 		if(pointList.size() == 0) {
 			pointList.add(point);
+			currentPoint = point;
 		}
 		else {
 			// 입력받은점이 시작점과 같은지
@@ -146,4 +147,16 @@ public class Polygon extends Shape{
 			this.currentPoint = currentPoint;
 		}
 	}
+	
+
+	//getter, setter
+	public boolean isIng() {
+		return isIng;
+	}
+	public void setIng(boolean isIng) {
+		this.isIng = isIng;
+	}
+	
+	
+	
 }

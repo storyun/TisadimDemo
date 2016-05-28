@@ -47,6 +47,8 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 
 	ShapeList shapeList;
 	
+	boolean isMakeShape;
+	
 	public SadimPanel(SadimFrame mainFrame) {
 		super();
 		this.setSize(new Dimension(800, 600));
@@ -58,6 +60,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		edgeColor = Color.BLACK;
 		fillColor = Color.black;
 		border = 1;
+		isMakeShape = false;
 		
 		canvas = new MyCanvas();
 		canvas.setBounds(0, 0, 800, 600);
@@ -121,22 +124,27 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		// TODO Auto-generated method stub
 		border = Float.valueOf(mainFrame.getSpinner().getValue().toString()).floatValue();
 		if( shapeId == Shape.CIRCLE) {
+			isMakeShape = true;
 			circle = new Circle(edgeColor, fillColor, border);
 			shapeList.addShape(circle);
 		}
 		else if(shapeId == Shape.CURVE) {
+			isMakeShape = true;
 			curve = new Curve(edgeColor, fillColor, border);
 			shapeList.addShape(curve);
 		}
 		else if(shapeId == Shape.LINE) {
+			isMakeShape = true;
 			line = new Line(edgeColor, fillColor, border);
 			shapeList.addShape(line);
 		}
-		else if(shapeId == Shape.POLYGON) {
+		else if(shapeId == Shape.POLYGON && isMakeShape == false) {
+			isMakeShape = true;
 			polygon = new Polygon(edgeColor, fillColor, border);
 			shapeList.addShape(polygon);
 		}
 		else if(shapeId == Shape.RECTANGLE) {
+			isMakeShape = true;
 			rectangle = new Rectangle(edgeColor, fillColor, border);
 			shapeList.addShape(rectangle);
 		}
@@ -180,7 +188,8 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if( shapeId == Shape.POLYGON) {
+		if( shapeId == Shape.POLYGON && isMakeShape == true) {
+			
 			shape.doMove(e.getPoint());
 			
 			canvas.repaint();
