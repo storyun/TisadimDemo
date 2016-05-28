@@ -25,33 +25,40 @@ public class Rectangle extends Shape{
 	
 	@Override
 	public void drawEdge(Graphics2D g) {
-		// TODO Auto-generated method stub
-		g.drawRect(getStartPoint().x, getStartPoint().y, width, height);
+		if(width>0 && height>0)
+			g.drawRect(getStartPoint().x, getStartPoint().y, width, height);
+		else if(width>0 && height<0)
+			g.drawRect(getStartPoint().x, getEndPoint().y, width, -height);
+		else if(width<0 && height>0)
+			g.drawRect(getEndPoint().x, getStartPoint().y, -width, height);
+		else if(width<0 && height<0)
+			g.drawRect(getEndPoint().x, getEndPoint().y, -width, -height);
 	}
 	
-	
-
 	@Override
 	public void drawFill(Graphics2D g) {
-		// TODO Auto-generated method stub
-		g.fillRect(getStartPoint().x, getStartPoint().y, width, height);
+		if(width>0 && height>0)
+			g.fillRect(getStartPoint().x, getStartPoint().y, width, height);
+		else if(width>0 && height<0)
+			g.fillRect(getStartPoint().x, getEndPoint().y, width, -height);
+		else if(width<0 && height>0)
+			g.fillRect(getEndPoint().x, getStartPoint().y, -width, height);
+		else if(width<0 && height<0)
+			g.fillRect(getEndPoint().x, getEndPoint().y, -width, -height);
 	}
 
 	@Override
 	public void doPress(Point endPoint) {
 		// TODO Auto-generated method stub
-		
 		setEndPoint(endPoint);
-		initialRealPoint();
 		initialWidthHeight();
-		
 	}
 	
 	private void initialRealPoint() {
 		
 		if( getStartPoint().x < getEndPoint().x && getStartPoint().y < getEndPoint().y) return;
 		
-		Point realStartPoint = new Point();
+		Point realStartPoint =  new Point();
 		Point realEndPoint = new Point();
 		
 		if( getStartPoint().x >= getEndPoint().x) {

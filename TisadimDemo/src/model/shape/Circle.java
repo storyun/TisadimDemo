@@ -23,14 +23,27 @@ public class Circle extends Shape{
 	
 	@Override
 	public void drawEdge(Graphics2D g) {
-		// TODO Auto-generated method stub
-		g.drawOval(getStartPoint().x, getStartPoint().y, width, height);
+		if(width>0 && height>0)
+			g.drawOval(getStartPoint().x, getStartPoint().y, width, height);
+		else if(width>0 && height<0)
+			g.drawOval(getStartPoint().x, getEndPoint().y, width, -height);
+		else if(width<0 && height>0)
+			g.drawOval(getEndPoint().x, getStartPoint().y, -width, height);
+		else if(width<0 && height<0)
+			g.drawOval(getEndPoint().x, getEndPoint().y, -width, -height);
 	}
 	
 	@Override
 	public void drawFill(Graphics2D g) {
-		// TODO Auto-generated method stub
-		g.fillOval(getStartPoint().x, getStartPoint().y, width, height);
+		if(width>0 && height>0)
+			g.fillOval(getStartPoint().x, getStartPoint().y, width, height);
+		else if(width>0 && height<0)
+			g.fillOval(getStartPoint().x, getEndPoint().y, width, -height);
+		else if(width<0 && height>0)
+			g.fillOval(getEndPoint().x, getStartPoint().y, -width, height);
+		else if(width<0 && height<0)
+			g.fillOval(getEndPoint().x, getEndPoint().y, -width, -height);
+		
 	}
 
 	@Override
@@ -38,7 +51,6 @@ public class Circle extends Shape{
 		// TODO Auto-generated method stub
 		
 		setEndPoint(endPoint);
-		initialRealPoint();
 		initialWidthHeight();
 		
 	}
