@@ -20,6 +20,28 @@ public class Polygon extends Shape{
 		isIng = true;
 		currentPoint = new Point();
 	}
+	/**
+	 * 마지막으로 점을 찍은 곳의 반경이 처음 시작점과 아주 근소한 차이에 있을때 true
+	 * @param startP = 시작점
+	 * @param curP   = 현재 점을 찍은 좌표
+	 * @return  현재점과 시작점의 차이가 근소하면 true
+	 */
+	public boolean checkIsmadePolygon(Point startP, Point curP){
+		
+		double rad =  2.0;
+		
+		//내접하는 계산식
+		double dx2 = (curP.getX()- startP.getX())*(curP.getX()- startP.getX()) ;
+		double dy2 = (curP.getY()- startP.getY())*(curP.getY()- startP.getY());
+		double result = dx2 +dy2;
+				  
+		if( result <= (rad*rad) ){
+			return true;
+		}else
+			return false;
+		
+		
+	}
 	
 	@Override
 	public void draw(Graphics2D g) {
@@ -66,6 +88,8 @@ public class Polygon extends Shape{
 			}
 		}
 	}
+	
+	
 	
 	private void initialStartEndPoint() {
 		int minX = getPointList().get(START_POINT).x;
