@@ -368,4 +368,13 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
    public void clearCmd() {
 	   cmd = 0;
    }
+
+	public MyCanvas getCanvas() {
+		return canvas;
+	}
+	
+	public void setCanvas(MyCanvas canvas) {
+		this.canvas = canvas;
+	}
+   
 }

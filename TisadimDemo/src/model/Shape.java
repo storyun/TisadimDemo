@@ -268,6 +268,8 @@ public abstract class Shape implements Serializable{
 		pointList.add(p);
 		
 		this.pointList = pointList;
+		
+		
 	}
 	
 	public int selectPoint(Point p) {

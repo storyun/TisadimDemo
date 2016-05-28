@@ -113,10 +113,11 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
             
             // 최소값 최대값 
             initialStartEndPoint();
+         // point
+            initialPointList();
             // 중심점
             initialCenterPoint();
-            // point
-            initialPointList();
+            
          }
          else{
              pointList.add(point);       //감싸는 사각형을 위한것
