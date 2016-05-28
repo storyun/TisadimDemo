@@ -63,7 +63,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       this.mainFrame = mainFrame;
       shapeId = 0;
       edgeColor = Color.BLACK;
-      fillColor = Color.black;
+      fillColor = new Color(0, 0, 0, 0);
       border = 1;
       isMakeShape = false;
       selectIndex = -1;
