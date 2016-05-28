@@ -13,6 +13,8 @@ public class Curve extends Shape{
 	
 	public Curve(Color edgeColor, Color fillColor, float stroke) {
 		super(edgeColor, fillColor, stroke);
+		
+		setId(Shape.CURVE);
 	}
 	@Override
 	public void drawEdge(Graphics2D g) {

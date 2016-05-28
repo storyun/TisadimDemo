@@ -23,7 +23,7 @@ public void setPolyPointList(ArrayList<Point> polyPointList) {
 }
 public Polygon(Color edgeColor, Color fillColor, float stroke) {
       super(edgeColor, fillColor, stroke);
-      
+      setId(Shape.POLYGON);
       isIng = true;
       currentPoint = new Point();
    }

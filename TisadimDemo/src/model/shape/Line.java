@@ -14,6 +14,8 @@ public class Line extends Shape{
 	
 	public Line(Color edgeColor, Color fillColor, float stroke) {
 		super(edgeColor, fillColor, stroke);
+		
+		setId(Shape.LINE);
 	}
 	
 	@Override

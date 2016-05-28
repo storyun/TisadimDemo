@@ -41,7 +41,7 @@ public class ShapeList implements Serializable{
 		int index = -1;
 		
 		for(int i=shapeList.size()-1;i>=0;i--)
-		{
+		{System.out.println(shapeList.get(i).getId());
 			switch(shapeList.get(i).getId())
 			{
 			case 1: //circle
@@ -52,19 +52,43 @@ public class ShapeList implements Serializable{
 				b = (double)(shapeList.get(i).getEndPoint().y-shapeList.get(i).getStartPoint().y)/(2.0);
 				ellipse = (double)((point.x-shapeList.get(i).getCenterPoint().x)*(point.x-shapeList.get(i).getCenterPoint().x))/(a*a)
 						+(double)((point.y-shapeList.get(i).getCenterPoint().y)*(point.y-shapeList.get(i).getCenterPoint().y))/(b*b);
-				System.out.println(ellipse);
+
 				if(ellipse<=1)
 				{
 					return i;
 				}
 				break;
 			}
-			case 2: //
+			case 2: //rectangle
 			{
-				
+				if(shapeList.get(i).getStartPoint().x<=point.x && point.x<=shapeList.get(i).getEndPoint().x)
+				{
+					if(shapeList.get(i).getStartPoint().y<=point.y && point.y<=shapeList.get(i).getEndPoint().y)
+					{
+						return i;
+					}
+				}
+				break;
 			}
-			case 3:
-			case 4:
+			case 3: //polygon
+			{
+				break;
+			}
+			case 4: //line
+			{	System.out.println(shapeList.get(i).getStartPoint().x+" "+shapeList.get(i).getEndPoint().x);
+			System.out.println(point.x);
+				if(shapeList.get(i).getStartPoint().x<=point.x && point.x<=shapeList.get(i).getEndPoint().x)
+				{
+					
+					
+					//double randa =  (double)(shapeList.get(i).getEndPoint().y-shapeList.get(i).getStartPoint().y)/(double)(shapeList.get(i).getEndPoint().x-shapeList.get(i).getStartPoint().x);
+					//if((double)point.y-shapeList.get(i).getStartPoint().y - randa*(point.x-shapeList.get(i).getStartPoint().x) <10)
+					//{
+						return i;
+					//}
+				}
+				break;
+			}
 			case 5:
 			}
 			
@@ -72,5 +96,10 @@ public class ShapeList implements Serializable{
 	
 		
 		return index;
+	}
+
+	private Object getStartPoint() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
