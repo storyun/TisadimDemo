@@ -77,9 +77,18 @@ public abstract class Shape implements Serializable{
 	public void doMove(Point currentPoint) {
 	}
 	
-	public void move(Graphics2D g, Point p) {
+	public void doMove(Point currentPoint, Point movePoint) {
+		int differX = movePoint.x - currentPoint.x;
+		int differY = movePoint.y - currentPoint.y;
 		
+		startPoint.setLocation(startPoint.x+differX, startPoint.y+differY);
+		endPoint.setLocation(startPoint.x+width, startPoint.y+height);
+		
+		initialCenterPoint();
+		initialPointList();
 	}
+	
+	
 	public void rotate(Graphics2D g, Point p) {
 		
 	}

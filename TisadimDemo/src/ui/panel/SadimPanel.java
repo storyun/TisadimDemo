@@ -52,6 +52,8 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
    
    private int selectIndex;
    private int pointIndex;
+   private int cmd;			// 1 : resize, 2, move
+   private Point point;
 
    private ShapeList shapeList;
    
@@ -72,6 +74,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       isMakeShape = false;
       selectIndex = -1;
       pointIndex = -1;
+      cmd = 0;
 
       canvas = new MyCanvas();
       canvas.setBounds(0, 0, 800, 600);
@@ -220,6 +223,12 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
         	 if( selectIndex >= 0) {
         		 pointIndex = shape.selectPoint(e.getPoint());
         		 if( pointIndex >= 0) {
+        			cmd = 1;
+        		 }
+        		 else if( selectIndex == shapeList.getSelectIndex(e.getPoint()) ) {
+        			 // move
+        			 cmd = 2;
+        			 point = e.getPoint();
         			 
         		 }
         		 else {
@@ -249,11 +258,16 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
          isMakeShape=false;
          //다각형이나 선택 모드가 아닐때.
       }
-      else if( shapeId == Shape.SELECT && pointIndex>= 0) {
+      else if( shapeId == Shape.SELECT && cmd == 1) {
 //          shape.doResize(e.getPoint(), pointIndex);
 //          canvas.repaint();
     	  pointIndex = -1;
+    	  cmd = 0;
        }   
+      else if( shapeId == Shape.SELECT && cmd == 2 ) {
+    	  cmd = 0;
+    	  point = null;
+      }
       else if(shapeId == Shape.POLYGON ){
                Polygon poly = (Polygon)shape;
                /**만약 다각형을 그리는 순간이끝났다면   **/
@@ -286,10 +300,16 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
          shape.doPress(e.getPoint());
          canvas.repaint();
       }
-      else if( shapeId == Shape.SELECT && pointIndex>= 0) {
+      else if( shapeId == Shape.SELECT && cmd == 1) {
           shape.doResize(e.getPoint(), pointIndex);
           canvas.repaint();
-       }      
+       }
+      else if( shapeId == Shape.SELECT && cmd == 2) {
+    	  shape.doMove(point, e.getPoint());
+    	  
+    	  canvas.repaint();
+    	  point = e.getPoint();
+      }
    }
 
    @Override
