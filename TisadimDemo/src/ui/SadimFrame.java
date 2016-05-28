@@ -27,6 +27,7 @@ import ui.panel.SadimPanel;
 
 import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
 public class SadimFrame extends JFrame  implements ActionListener, MouseInputListener {
@@ -107,10 +108,20 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 				
 		btnEdgecolor = new JButton("Edge Color");
 		btnEdgecolor.setBounds(1, 265, 174, 43);
+		int reserveColor = Color.BLACK.getRGB();
+		reserveColor ^= 0x00FFFFFF;
+		btnEdgecolor.setForeground(new Color(reserveColor));
+		btnEdgecolor.setOpaque(true);
+		btnEdgecolor.setBorderPainted(false);
 		panel.add(btnEdgecolor);
 				
 		btnFillcolor = new JButton("Fill Color");
 		btnFillcolor.setBounds(1, 309, 174, 43);
+		reserveColor = Color.white.getRGB();
+		reserveColor ^= 0x00FFFFFF;
+		btnEdgecolor.setForeground(new Color(reserveColor));
+		btnFillcolor.setOpaque(true);
+		btnFillcolor.setBorderPainted(false);
 		panel.add(btnFillcolor);
 				
 		lblBorder = new JLabel("Border");
@@ -140,6 +151,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 				
 		spinner = new JSpinner();
 		spinner.setBounds(87, 356, 87, 35);
+		spinner.setModel(new SpinnerNumberModel((float)1, (float)0, (float)10, (float)1));
 		panel.add(spinner);
 		
 		slider = new JSlider(SwingConstants.HORIZONTAL);
@@ -284,11 +296,17 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		else if(e.getSource() == btnEdgecolor) {
 			mainpanel.setEdgeColor(JColorChooser.showDialog(this, "색을 선택하세요", mainpanel.getEdgeColor()));
 			btnEdgecolor.setBackground(mainpanel.getEdgeColor());
+			int reserveColor = mainpanel.getEdgeColor().getRGB();
+			reserveColor ^= 0x00FFFFFF;
+			btnEdgecolor.setForeground(new Color(reserveColor));
 		}
 		//도형 내부 칠할 색 선택
 		else if(e.getSource() == btnFillcolor) {
 			mainpanel.setFillColor(JColorChooser.showDialog(this, "색을 선택하세요", mainpanel.getFillColor()));
-			btnFillcolor.setBackground(mainpanel.getEdgeColor());
+			btnFillcolor.setBackground(mainpanel.getFillColor());
+			int reserveColor = mainpanel.getEdgeColor().getRGB();
+			reserveColor ^= 0x00FFFFFF;
+			btnFillcolor.setForeground(new Color(reserveColor));
 		}
 	}
 
