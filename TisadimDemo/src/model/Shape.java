@@ -130,7 +130,7 @@ public abstract class Shape implements Serializable{
 	}
 
 	protected void initialPointList() {
-		ArrayList<Point> pointList = getPointList();
+		ArrayList<Point> pointList = new ArrayList<Point>();
 		
 		pointList.add(getStartPoint());
 		
@@ -177,6 +177,8 @@ public abstract class Shape implements Serializable{
 		p.x = startPoint.x;
 		p.y = (startPoint.y + endPoint.y ) /2;
 		pointList.add(p);
+		
+		this.pointList = pointList;
 	}
 	
 	public int selectPoint(Point p) {
