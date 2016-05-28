@@ -47,4 +47,28 @@ public class Line extends Shape{
 		// TODO Auto-generated method stub
 		initialCenterPoint();
 	}
+	
+	public void doResize(Point p, int pointIndex) {
+		switch(pointIndex) {
+		case 0:
+			setStartPoint(p);
+			break;
+		case 1:
+			setEndPoint(p);
+			break;
+		}
+		
+		
+	}
+	
+	public void doMove(Point currentPoint, Point movePoint) {
+		int differX = movePoint.x - currentPoint.x;
+		int differY = movePoint.y - currentPoint.y;
+		
+		getStartPoint().setLocation(getStartPoint().x+differX, getStartPoint().y+differY);
+		getEndPoint().setLocation(getEndPoint().x+differX, getEndPoint().y+differY);
+		
+//		initialCenterPoint();
+//		initialPointList();
+	}
 }

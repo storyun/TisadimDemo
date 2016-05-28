@@ -115,10 +115,10 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
      
 	   
 	// 더블버퍼링을 위한 변수
-		private Image offImage;
-		private Graphics bg;
-	 BufferedImage bf = new BufferedImage( 800, 600, BufferedImage.TYPE_INT_ARGB );
-	 BufferStrategy bs = getBufferStrategy(); //Gets the buffer strategy our canvas is currently using
+//		private Image offImage;
+//		private Graphics bg;
+//	 BufferedImage bf = new BufferedImage( 800, 600, BufferedImage.TYPE_INT_ARGB );
+//	 BufferStrategy bs = getBufferStrategy(); //Gets the buffer strategy our canvas is currently using
 	  public MyCanvas() {
 		
 	} 
