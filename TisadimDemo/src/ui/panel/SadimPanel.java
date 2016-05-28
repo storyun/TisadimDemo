@@ -76,7 +76,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       selectIndex = -1;
       pointIndex = -1;
       cmd = 0;
-
+      
       canvas = new MyCanvas();
       canvas.setBounds(0, 0, 800, 600);
       canvas.setBackground(Color.white);
@@ -237,7 +237,6 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
         			 // move
         			 cmd = 2;
         			 point = e.getPoint();
-        			 
         		 }
         		 else {
         			 selectIndex = shapeList.getSelectIndex(e.getPoint());
@@ -250,6 +249,8 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
         		 selectIndex = shapeList.getSelectIndex(e.getPoint());
         		 if( selectIndex >= 0) {
         			 shape = shapeList.get(selectIndex);
+        			 mainFrame.getMntmNewMenuItem_3().setEnabled(true);
+        			 mainFrame.getMntmNewMenuItem_4().setEnabled(true);
         		 }
         	 }
          }

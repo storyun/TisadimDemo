@@ -361,13 +361,6 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 			mainpanel.getShapeList().clear();
 			mainpanel.repaintCanvas();
 		}
-		else if(e.getActionCommand() == mntmNewMenuItem_2.getText()) {
-			//실행취소
-			
-		}
-		else if(e.getActionCommand() == mntmNewMenuItem_9.getText()) {
-			// 되돌리기
-		}
 		else if(e.getActionCommand() == mntmNewMenuItem_3.getText()) {
 			// 잘라내기
 		}
@@ -448,5 +441,21 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 
 	public void setMntmNewMenuItem_8(JMenuItem mntmNewMenuItem_8) {
 		this.mntmNewMenuItem_8 = mntmNewMenuItem_8;
+	}
+
+	public JButton getBtnEdgecolor() {
+		return btnEdgecolor;
+	}
+
+	public void setBtnEdgecolor(JButton btnEdgecolor) {
+		this.btnEdgecolor = btnEdgecolor;
+	}
+
+	public JButton getBtnFillcolor() {
+		return btnFillcolor;
+	}
+
+	public void setBtnFillcolor(JButton btnFillcolor) {
+		this.btnFillcolor = btnFillcolor;
 	}
 }
