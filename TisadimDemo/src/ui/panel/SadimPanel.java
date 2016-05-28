@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.font.ShapeGraphicAttribute;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -104,9 +105,15 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
    
    
    /** 캔버스 클래스 입니다. **/
+   
    private class MyCanvas extends Canvas {
-	 
+     
+	   
+	// 더블버퍼링을 위한 변수
+		private Image offImage;
+		private Graphics bg;
 	 BufferedImage bf = new BufferedImage( 800, 600, BufferedImage.TYPE_INT_ARGB );
+	 BufferStrategy bs = getBufferStrategy(); //Gets the buffer strategy our canvas is currently using
 	  public MyCanvas() {
 		
 	} 
@@ -115,7 +122,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       public void paint(Graphics g) {         
          super.paint(g);
          Graphics2D g2 = (Graphics2D)canvas.getGraphics();
-
+    
             // 이전까지 그렸던 도형 그림
          for(int i=0; i<shapeList.size(); i++) {
             
@@ -290,12 +297,9 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
    @Override
    public void mouseMoved(MouseEvent e) {
       // TODO Auto-generated method stub
-      if( shapeId == Shape.POLYGON && isMakeShape == true) {
-         
-         shape.doMove(e.getPoint());
-         
-         canvas.repaint();
-      
+      if( shapeId == Shape.POLYGON && isMakeShape == true) {         
+         shape.doMove(e.getPoint());         
+         canvas.repaint();      
       }
    }
 

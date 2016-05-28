@@ -21,10 +21,13 @@ public abstract class Shape implements Serializable{
 	
 	private int id;
 	private ArrayList<Point> pointList;
+	
+
+	private ArrayList<Point> polyPointList;		//폴리곤만 작동할수있다.
 	private Color edgeColor;
 	private Color fillColor;
 	private float stroke;
-//	private BasicStroke basicStroke;
+	
 	private boolean isSelect;
 	
 	protected int width;
@@ -288,6 +291,12 @@ public abstract class Shape implements Serializable{
 	public void setSelect(boolean isSelect) {
 		this.isSelect = isSelect;
 	}
-	
+	public ArrayList<Point> getPolyPointList() {
+		return polyPointList;
+	}
+
+	public void setPolyPointList(ArrayList<Point> polyPointList) {
+		this.polyPointList = polyPointList;
+	}
 	
 }
