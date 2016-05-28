@@ -13,8 +13,7 @@ public class Polygon extends Shape{
    
    private boolean isIng;
    private Point currentPoint;
-   private ArrayList<Point> polyPointList = new ArrayList<Point>();
-   
+   private ArrayList<Point> polyPointList;
    public ArrayList<Point> getPolyPointList() {
    return polyPointList;
 }
@@ -26,6 +25,7 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
       setId(Shape.POLYGON);
       isIng = true;
       currentPoint = new Point();
+      polyPointList = new ArrayList<Point>();
    }
    /**
     * 마지막으로 점을 찍은 곳의 반경이 처음 시작점과 아주 근소한 차이에 있을때 true
@@ -75,11 +75,20 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
    }
    
    
-   
    @Override
    public void drawFill(Graphics2D g) {
       // TODO Auto-generated method stub
 //      g.fillRect(getStartPoint().x, getStartPoint().y, width, height);
+	   int[] xList = new int[polyPointList.size()];
+	   int[] yList = new int[polyPointList.size()];
+	   
+	   for(int i=0; i<polyPointList.size(); i++) {
+		   xList[i] = polyPointList.get(i).x;
+		   yList[i] = polyPointList.get(i).y;
+	   }
+	   
+	   
+	   g.drawPolygon(xList, yList, polyPointList.size());
    }
 
    @Override
