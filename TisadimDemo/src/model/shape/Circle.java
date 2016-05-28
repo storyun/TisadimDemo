@@ -78,12 +78,7 @@ public class Circle extends Shape{
 		initialRealPoint();
 		initialWidthHeight();
 		initialCenterPoint();
-		
 		initialPointList();
-	}
-	
-	private void initialPointList() {
-		
 	}
 
 	@Override

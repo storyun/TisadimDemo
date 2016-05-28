@@ -57,6 +57,9 @@ public class Polygon extends Shape{
 				// 최소값 최대값 ,,
 				initialStartEndPoint();
 				// 중심점
+				initialCenterPoint();
+				// point
+				initialPointList();
 			}
 			else{
 				pointList.add(point);

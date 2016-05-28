@@ -67,6 +67,55 @@ public abstract class Shape implements Serializable{
 		centerPoint = p;
 	}
 
+	protected void initialPointList() {
+		ArrayList<Point> pointList = getPointList();
+		
+		pointList.add(getStartPoint());
+		
+		Point startPoint = getStartPoint();
+		Point endPoint = getEndPoint();
+		
+		Point p;
+		// 1
+		p = new Point();
+		p.x = (startPoint.x + endPoint.x) / 2;
+		p.y = startPoint.y;
+		pointList.add(p);
+		
+		// 2
+		p = new Point();
+		p.x = endPoint.x;
+		p.y = startPoint.x;
+		pointList.add(p);
+		
+		// 3
+		p = new Point();
+		p.x = endPoint.x;
+		p.y = (startPoint.y + endPoint.y)  / 2;
+		pointList.add(p);
+		
+		// 4
+		p = new Point(endPoint);
+		pointList.add(p);
+		
+		// 5
+		p = new Point();
+		p.x = (startPoint.x + endPoint.x) / 2;
+		p.y = endPoint.y;
+		pointList.add(p);
+		
+		// 6
+		p = new Point();
+		p.x = startPoint.x;
+		p.y = endPoint.y;
+		pointList.add(p);
+		
+		// 7 
+		p = new Point();
+		p.x = startPoint.x;
+		p.y = (startPoint.y + endPoint.y ) /2;
+		pointList.add(p);
+	}
 	
 	// setter, getter
 	
