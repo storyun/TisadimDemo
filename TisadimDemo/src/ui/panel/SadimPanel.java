@@ -214,8 +214,17 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	public Color getFillColor() {
 		return fillColor;
 	}
+
+	public ShapeList getShapeList() {
+		return shapeList;
+	}
+
+	public void setShapeList(ShapeList shapeList) {
+		this.shapeList = shapeList;
+	}
 	
-	
-	
+	public void repaintCanvas() {
+		canvas.repaint();
+	}
 	
 }

@@ -11,6 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -49,6 +50,8 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	private JMenuItem mntmNewMenuItem_8;
 	private JCheckBoxMenuItem chckbxmntmNewCheckItem;
 	private JCheckBoxMenuItem chckbxmntmNewCheckItem_1;
+	
+	private JFileChooser fileChooser;
 	
 	//왼쪽 편집 창
 	private JPanel panel;
@@ -307,6 +310,45 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 			int reserveColor = mainpanel.getEdgeColor().getRGB();
 			reserveColor ^= 0x00FFFFFF;
 			btnFillcolor.setForeground(new Color(reserveColor));
+		}
+		else if(e.getActionCommand() == mntmNewMenuItem_1.getText()) {
+			if( fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+				
+				String path = "";
+				path = fileChooser.getSelectedFile().toString();
+				/*
+				// 파일 저장함수 추가
+//				shapeList = fileHandler.saveFunction(path, shapeList);
+				
+				handler.ObjectSave(path,shapeList);
+				
+
+//				outfile(path,shapeList);
+				cPanel.canvasRepaint();
+				*/
+				
+			}
+		}
+		else if(e.getActionCommand() == mntmNewMenuItem.getText()) {
+			if( fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+				String path = "";
+				path = fileChooser.getSelectedFile().toString();
+				// 파일 오픈 함수 추가 
+				/*
+				shapeList = (ShapeList) handler.ObjectLoad(path);
+				System.out.println(shapeList.size());
+				for(int i=0 ; i<shapeList.size(); i++){
+					System.out.println(shapeList.get(i));
+				}
+				cPanel.canvasRepaint(shapeList);
+				*/
+
+			}
+		}
+		else if(e.getActionCommand() == menuItem.getText()) {
+			mainpanel.getShapeList().clear();
+			
+//			cPanel.canvasRepaint();
 		}
 	}
 
