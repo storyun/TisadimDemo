@@ -77,6 +77,29 @@ public abstract class Shape implements Serializable{
 	public void rotate(Graphics2D g, Point p) {
 		
 	}
+	public void doResize(Point p, int pointIndex) {
+		switch(pointIndex) {
+		case 0:
+			startPoint.setLocation(p);
+			break;
+		case 1:
+			startPoint.setLocation(startPoint.x, p.y);
+			break;
+		case 2:
+			
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		}
+	}
 	
 	protected void initialCenterPoint() {
 		Point p = new Point();
@@ -135,6 +158,19 @@ public abstract class Shape implements Serializable{
 		p.x = startPoint.x;
 		p.y = (startPoint.y + endPoint.y ) /2;
 		pointList.add(p);
+	}
+	
+	public int selectPoint(Point p) {
+		int index = -1;
+		
+		for(int i=0; i<pointList.size(); i++) {
+			if( pointList.get(i).x-5 >= p.x && pointList.get(i).x+5 <= p.x
+					&& pointList.get(i).y-5 >= p.y && pointList.get(i).y+5 <= p.y) {
+				index = i;
+			}
+		}
+		
+		return index;
 	}
 
 	// setter, getter

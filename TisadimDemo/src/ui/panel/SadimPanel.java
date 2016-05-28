@@ -47,6 +47,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	private Shape shape;
 	
 	private int selectIndex;
+	private int pointIndex;
 
 	private ShapeList shapeList;
 	
@@ -184,8 +185,28 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 		{
 			if(shapeList.size() != 0)
 			{
-				selectIndex = shapeList.getSelectIndex(e.getPoint());
-				shape = shapeList.get(selectIndex);
+				// pointlist에 해당하는지 확인
+				if(selectIndex >= 0) {
+					pointIndex = shape.selectPoint(e.getPoint());
+					if( pointIndex >= 0 ) {
+						// resize
+					} 
+					else {
+						// inner ?
+						if ( selectIndex == shapeList.getSelectIndex(e.getPoint()))  {
+							//move
+						}
+						// outer ?
+						else {
+							selectIndex = shapeList.getSelectIndex(e.getPoint());
+							if( selectIndex >= 0) shape = shapeList.get(selectIndex);
+						}
+					}
+				}
+				else { 
+					selectIndex = shapeList.getSelectIndex(e.getPoint());
+					if( selectIndex >= 0) shape = shapeList.get(selectIndex);
+				}
 			}
 		}
 	}
@@ -193,9 +214,12 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if( shape.getId() != Shape.SELECT) {
+		if( shapeId != Shape.SELECT) {
 			shape.doRelease(e.getPoint());
 			canvas.repaint();
+		}
+		else if( shapeId == Shape.SELECT && pointIndex>= 0) {
+			shape.doResize(e.getPoint(), pointIndex);
 		}
 	}
 	
