@@ -101,7 +101,10 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 				
 				g2.setColor(s.getEdgeColor());
 				g2.setStroke(s.getBasicStroke());
-				s.draw(g2);
+				s.drawEdge(g2);
+				
+				g2.setColor(s.getFillColor());
+				s.drawEdge(g2);
 			}
 		}
 	}

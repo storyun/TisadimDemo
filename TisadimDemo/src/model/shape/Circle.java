@@ -22,9 +22,15 @@ public class Circle extends Shape{
 	}
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void drawEdge(Graphics2D g) {
 		// TODO Auto-generated method stub
 		g.drawOval(getStartPoint().x, getStartPoint().y, width, height);
+	}
+	
+	@Override
+	public void drawFill(Graphics2D g) {
+		// TODO Auto-generated method stub
+		g.fillOval(getStartPoint().x, getStartPoint().y, width, height);
 	}
 
 	@Override

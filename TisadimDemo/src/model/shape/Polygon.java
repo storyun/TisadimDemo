@@ -44,7 +44,7 @@ public class Polygon extends Shape{
 	}
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void drawEdge(Graphics2D g) {
 		// TODO Auto-generated method stub
 		ArrayList<Point> pointList = getPointList();
 		
@@ -60,6 +60,12 @@ public class Polygon extends Shape{
 		else {
 			g.drawLine(endPoint.x, endPoint.y, startPoint.x, startPoint.y);
 		}
+	}
+	
+	@Override
+	public void drawFill(Graphics2D g) {
+		// TODO Auto-generated method stub
+//		g.fillRect(getStartPoint().x, getStartPoint().y, width, height);
 	}
 
 	@Override

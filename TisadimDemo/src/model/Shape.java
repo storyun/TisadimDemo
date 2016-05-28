@@ -46,7 +46,8 @@ public abstract class Shape implements Serializable{
 		pointList = new ArrayList<Point>();
 	}
 	
-	public abstract void draw(Graphics2D g);
+	public void drawFill(Graphics2D g) {}
+	public abstract void drawEdge(Graphics2D g);
 	public abstract void doClick(Point startPoint);
 	public abstract void doPress(Point endPoint);
 	public abstract void doRelease(Point endPoint);

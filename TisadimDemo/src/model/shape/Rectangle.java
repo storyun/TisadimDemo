@@ -24,9 +24,17 @@ public class Rectangle extends Shape{
 	}
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void drawEdge(Graphics2D g) {
 		// TODO Auto-generated method stub
 		g.drawRect(getStartPoint().x, getStartPoint().y, width, height);
+	}
+	
+	
+
+	@Override
+	public void drawFill(Graphics2D g) {
+		// TODO Auto-generated method stub
+		g.fillRect(getStartPoint().x, getStartPoint().y, width, height);
 	}
 
 	@Override
