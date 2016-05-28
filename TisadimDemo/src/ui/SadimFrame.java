@@ -29,12 +29,12 @@ import javax.swing.SwingConstants;
 
 public class SadimFrame extends JFrame  implements ActionListener, MouseInputListener {
 	
-	//µµÇü º¯¼ö
+	//ë„í˜• ë³€ìˆ˜
 	private int shapeId;
 	private Color edgeColor;
 	private Color fillColor;
 	
-	//¸Ş´º »ó´Ü¹Ù º¯¼ö
+	//ë©”ë‰´ ìƒë‹¨ë°” ë³€ìˆ˜
 	private JMenuBar menuBar;
 	private JMenu mnFile;
 	private JMenuItem menuItem;
@@ -52,7 +52,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	private JCheckBoxMenuItem chckbxmntmNewCheckItem;
 	private JCheckBoxMenuItem chckbxmntmNewCheckItem_1;
 	
-	//¿ŞÂÊ ÆíÁı Ã¢
+	//ì™¼ìª½ í¸ì§‘ ì°½
 	private JPanel panel;
 	private JButton btnSelect;
 	private JButton btnCircle;
@@ -67,7 +67,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	private JLabel lblBorder;
 	private JSpinner spinner;
 	
-	//°¡¿îµ¥ Ã¢
+	//ê°€ìš´ë° ì°½
 	private SadimPanel mainpanel;
 	
 	public SadimFrame() {
@@ -79,7 +79,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		edgeColor = Color.BLACK;
 		fillColor = Color.black;
 	
-		//¿ŞÂÊ ÆíÁıÃ¢
+		//ì™¼ìª½ í¸ì§‘ì°½
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(175, 300));
@@ -130,56 +130,56 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		slider.setBounds(1, 390, 174, 43);
 		panel.add(slider);
 
-		//»ó´Ü ¸Ş´º¹Ù
+		//ìƒë‹¨ ë©”ë‰´ë°”
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		mnFile = new JMenu("ÆÄÀÏ");
+		mnFile = new JMenu("íŒŒì¼");
 		menuBar.add(mnFile);
 		
-		menuItem = new JMenuItem("»õ·Î ¸¸µé±â");
+		menuItem = new JMenuItem("ìƒˆë¡œ ë§Œë“¤ê¸°");
 		mnFile.add(menuItem);
 		
-		mntmNewMenuItem = new JMenuItem("¿­±â");
+		mntmNewMenuItem = new JMenuItem("ì—´ê¸°");
 		mnFile.add(mntmNewMenuItem);
 		
-		mntmNewMenuItem_1 = new JMenuItem("ÀúÀå");
+		mntmNewMenuItem_1 = new JMenuItem("ì €ì¥");
 		mnFile.add(mntmNewMenuItem_1);
 		
-		mnEdit = new JMenu("ÆíÁı");
+		mnEdit = new JMenu("í¸ì§‘");
 		menuBar.add(mnEdit);
 		
-		mntmNewMenuItem_2 = new JMenuItem("½ÇÇà Ãë¼Ò");
+		mntmNewMenuItem_2 = new JMenuItem("ì‹¤í–‰ ì·¨ì†Œ");
 		mnEdit.add(mntmNewMenuItem_2);
 		
-		mntmNewMenuItem_3 = new JMenuItem("Àß¶ó³»±â");
+		mntmNewMenuItem_3 = new JMenuItem("ì˜ë¼ë‚´ê¸°");
 		mnEdit.add(mntmNewMenuItem_3);
 		
-		mntmNewMenuItem_4 = new JMenuItem("º¹»ç");
+		mntmNewMenuItem_4 = new JMenuItem("ë³µì‚¬");
 		mnEdit.add(mntmNewMenuItem_4);
 		
-		mntmNewMenuItem_5 = new JMenuItem("ºÙ¿©³Ö±â");
+		mntmNewMenuItem_5 = new JMenuItem("ë¶™ì—¬ë„£ê¸°");
 		mnEdit.add(mntmNewMenuItem_5);
 		
-		mntmNewMenuItem_6 = new JMenuItem("»èÁ¦");
+		mntmNewMenuItem_6 = new JMenuItem("ì‚­ì œ");
 		mnEdit.add(mntmNewMenuItem_6);
 		
-		mnView = new JMenu("º¸±â");
+		mnView = new JMenu("ë³´ê¸°");
 		menuBar.add(mnView);
 		
-		mntmNewMenuItem_7 = new JMenuItem("È®´ë");
+		mntmNewMenuItem_7 = new JMenuItem("í™•ëŒ€");
 		mnView.add(mntmNewMenuItem_7);
 		
-		mntmNewMenuItem_8 = new JMenuItem("Ãà¼Ò");
+		mntmNewMenuItem_8 = new JMenuItem("ì¶•ì†Œ");
 		mnView.add(mntmNewMenuItem_8);
 		
-		chckbxmntmNewCheckItem = new JCheckBoxMenuItem("»óÅÂ Ç¥½ÃÁÙ");
+		chckbxmntmNewCheckItem = new JCheckBoxMenuItem("ìƒíƒœ í‘œì‹œì¤„");
 		mnView.add(chckbxmntmNewCheckItem);
 		
-		chckbxmntmNewCheckItem_1 = new JCheckBoxMenuItem("µµÇü Á¤º¸");
+		chckbxmntmNewCheckItem_1 = new JCheckBoxMenuItem("ë„í˜• ì •ë³´");
 		mnView.add(chckbxmntmNewCheckItem_1);
 		
-		//°¡¿îµ¥
+		//ê°€ìš´ë°
 		mainpanel = new SadimPanel(shapeId, edgeColor, fillColor);
 		getContentPane().add(mainpanel, BorderLayout.CENTER);
 	}
@@ -242,38 +242,38 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//±×¸² ¼±ÅÃ
+		//ê·¸ë¦¼ ì„ íƒ
 		if(e.getSource() == btnSelect) {
 			shapeId = Shape.SELECT;			
 		}
-		//¿ø ¼±ÅÃ
+		//ì› ì„ íƒ
 		else if(e.getSource() == btnCircle) {
 			shapeId = Shape.CIRCLE;
 		}
-		//»ç°¢Çü ¼±ÅÃ
+		//ì‚¬ê°í˜• ì„ íƒ
 		else if(e.getSource() == btnRectangle) {
 			shapeId = Shape.RECTANGLE;
 		}
-		//´Ù°¢Çü ¼±ÅÃ
+		//ë‹¤ê°í˜• ì„ íƒ
 		else if(e.getSource() == btnPolygon) {
 			shapeId = Shape.POLYGON;
 		}
-		//°î¼± ¼±ÅÃ
+		//ê³¡ì„  ì„ íƒ
 		else if(e.getSource() == btnCurve) {
 			shapeId = Shape.CURVE;
 		}
-		//Á÷¼± ¼±ÅÃ
+		//ì§ì„  ì„ íƒ
 		else if(e.getSource() == btnLine) {
 			shapeId = Shape.LINE;
 		}
-		//¼± »ö ¼±ÅÃ
+		//ì„  ìƒ‰ ì„ íƒ
 		else if(e.getSource() == btnEdgecolor) {
-			edgeColor = JColorChooser.showDialog(this, "»öÀ» ¼±ÅÃÇÏ¼¼¿ä", edgeColor);
+			edgeColor = JColorChooser.showDialog(this, "ìƒ‰ì„ ì„ íƒí•˜ì„¸ìš”", edgeColor);
 			btnEdgecolor.setBackground(edgeColor);
 		}
-		//µµÇü ³»ºÎ Ä¥ÇÒ »ö ¼±ÅÃ
+		//ë„í˜• ë‚´ë¶€ ì¹ í•  ìƒ‰ ì„ íƒ
 		else if(e.getSource() == btnFillcolor) {
-			fillColor = JColorChooser.showDialog(this, "»öÀ» ¼±ÅÃÇÏ¼¼¿ä", fillColor);
+			fillColor = JColorChooser.showDialog(this, "ìƒ‰ì„ ì„ íƒí•˜ì„¸ìš”", fillColor);
 			btnFillcolor.setBackground(fillColor);
 		}
 	}
