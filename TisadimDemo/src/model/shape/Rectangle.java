@@ -49,7 +49,7 @@ public class Rectangle extends Shape{
 		// TODO Auto-generated method stub
 		setEndPoint(endPoint);
 		initialWidthHeight();
-		System.out.println(endPoint);
+		
 	}
 	
 	private void initialRealPoint() {
@@ -91,7 +91,7 @@ public class Rectangle extends Shape{
 		initialWidthHeight();
 		initialCenterPoint();		
 		initialPointList();
-		System.out.println(getEndPoint());
+		
 	}
 
 	@Override
