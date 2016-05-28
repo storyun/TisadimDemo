@@ -33,6 +33,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	private int shapeId;
 	private Color edgeColor;
 	private Color fillColor;
+	private float border;
 	
 	//메뉴 상단바 변수
 	private JMenuBar menuBar;
@@ -60,7 +61,6 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	private JButton btnPolygon;
 	private JButton btnCurve;
 	private JButton btnLine;
-	private JLabel lblColor;
 	private JButton btnEdgecolor;
 	private JButton btnFillcolor;
 	private JSlider slider;
@@ -180,11 +180,9 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		mnView.add(chckbxmntmNewCheckItem_1);
 		
 		//가운데
-		mainpanel = new SadimPanel(shapeId, edgeColor, fillColor);
+		mainpanel = new SadimPanel(shapeId, edgeColor, fillColor, spinner.getValue().toString());
 		getContentPane().add(mainpanel, BorderLayout.CENTER);
 	}
-
-
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
