@@ -135,6 +135,8 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		btnPolygon.addActionListener(this);
 		btnRectangle.addActionListener(this);
 		btnSelect.addActionListener(this);
+		btnEdgecolor.addActionListener(this);
+		btnFillcolor.addActionListener(this);
 				
 		spinner = new JSpinner();
 		spinner.setBounds(87, 356, 87, 35);
@@ -194,7 +196,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		mnView.add(chckbxmntmNewCheckItem_1);
 		
 		//가운데
-		mainpanel = new SadimPanel();
+		mainpanel = new SadimPanel(this);
 		getContentPane().add(mainpanel, BorderLayout.CENTER);
 	}
 
@@ -289,4 +291,10 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 			btnFillcolor.setBackground(mainpanel.getEdgeColor());
 		}
 	}
+
+	public JSpinner getSpinner() {
+		return spinner;
+	}
+	
+	
 }

@@ -21,6 +21,7 @@ import model.shape.Curve;
 import model.shape.Line;
 import model.shape.Polygon;
 import model.shape.Rectangle;
+import ui.SadimFrame;
 
 import javax.swing.JLabel;
 
@@ -29,6 +30,7 @@ import java.awt.Canvas;
 
 public class SadimPanel extends JPanel implements ActionListener, MouseInputListener{
 	
+	private SadimFrame mainFrame;
 	private MyCanvas canvas;
 	
 	private int shapeId;
@@ -45,13 +47,13 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 
 	ShapeList shapeList;
 	
-	public SadimPanel() {
+	public SadimPanel(SadimFrame mainFrame) {
 		super();
-		
 		this.setSize(new Dimension(800, 600));
 		setLayout(null);
 		
 		//init
+		this.mainFrame = mainFrame;
 		shapeId = 0;
 		edgeColor = Color.BLACK;
 		fillColor = Color.black;
@@ -113,6 +115,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		border = Float.valueOf(mainFrame.getSpinner().getValue().toString()).floatValue();
 		if( shapeId == Shape.CIRCLE) {
 			circle = new Circle(edgeColor, fillColor, border);
 			shapeList.addShape(circle);
