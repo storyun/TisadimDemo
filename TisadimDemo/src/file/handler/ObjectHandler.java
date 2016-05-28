@@ -50,13 +50,14 @@ public  class  ObjectHandler implements Serializable{
 		 * @param path		 * 
 		 * @return  ShapeList
 		 */
-		 public static LinkedList<Shape> ObjectLoad(String path){
+		 public static ShapeList ObjectLoad(String path){
 			
 			 try {       
 		           FileInputStream in = new FileInputStream(path); 
 		           ObjectInput s = new ObjectInputStream(in); 	           
-		           ShapeList obj = (ShapeList)s.readObject();
-		           return obj.getShapeList();
+		           ShapeList obj = new ShapeList(); 
+		           obj = (ShapeList)s.readObject();
+		           return obj;
 		         } 
 		         catch(IOException e) { }     
 		         catch(ClassNotFoundException e) {} 

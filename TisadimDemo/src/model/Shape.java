@@ -21,7 +21,7 @@ public abstract class Shape implements Serializable{
 	private Color edgeColor;
 	private Color fillColor;
 	private float stroke;
-	private BasicStroke basicStroke;
+//	private BasicStroke basicStroke;
 	
 	private Point centerPoint;
 	private Point startPoint;
@@ -40,8 +40,6 @@ public abstract class Shape implements Serializable{
 		this.edgeColor = edgeColor;
 		this.fillColor = fillColor;
 		this.stroke = stroke;
-		
-		basicStroke = new BasicStroke(stroke);
 		
 		pointList = new ArrayList<Point>();
 	}
@@ -162,14 +160,6 @@ public abstract class Shape implements Serializable{
 
 	public void setStroke(float stroke) {
 		this.stroke = stroke;
-	}
-
-	public BasicStroke getBasicStroke() {
-		return basicStroke;
-	}
-
-	public void setBasicStroke(BasicStroke basicStroke) {
-		this.basicStroke = basicStroke;
 	}
 
 	public Point getCenterPoint() {

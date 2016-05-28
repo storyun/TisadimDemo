@@ -19,11 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.event.MouseInputListener;
 
+import file.handler.ObjectHandler;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import model.Shape;
+import model.handler.ShapeList;
 import ui.panel.SadimPanel;
 
 import javax.swing.JSpinner;
@@ -169,12 +172,15 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		menuBar.add(mnFile);
 		
 		menuItem = new JMenuItem("새로 만들기");
+		menuItem.addActionListener(this);
 		mnFile.add(menuItem);
 		
 		mntmNewMenuItem = new JMenuItem("열기");
+		mntmNewMenuItem.addActionListener(this);
 		mnFile.add(mntmNewMenuItem);
 		
 		mntmNewMenuItem_1 = new JMenuItem("저장");
+		mntmNewMenuItem_1.addActionListener(this);
 		mnFile.add(mntmNewMenuItem_1);
 		
 		mnEdit = new JMenu("편집");
@@ -213,6 +219,8 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		//가운데
 		mainpanel = new SadimPanel(this);
 		getContentPane().add(mainpanel, BorderLayout.CENTER);
+		
+		fileChooser = new JFileChooser();
 	}
 
 	@Override
@@ -316,16 +324,8 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 				
 				String path = "";
 				path = fileChooser.getSelectedFile().toString();
-				/*
-				// 파일 저장함수 추가
-//				shapeList = fileHandler.saveFunction(path, shapeList);
 				
-				handler.ObjectSave(path,shapeList);
-				
-
-//				outfile(path,shapeList);
-				cPanel.canvasRepaint();
-				*/
+				ObjectHandler.ObjectSave(path, mainpanel.getShapeList());
 				
 			}
 		}
@@ -333,22 +333,14 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 			if( fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 				String path = "";
 				path = fileChooser.getSelectedFile().toString();
-				// 파일 오픈 함수 추가 
-				/*
-				shapeList = (ShapeList) handler.ObjectLoad(path);
-				System.out.println(shapeList.size());
-				for(int i=0 ; i<shapeList.size(); i++){
-					System.out.println(shapeList.get(i));
-				}
-				cPanel.canvasRepaint(shapeList);
-				*/
-
+				mainpanel.setShapeList( ObjectHandler.ObjectLoad(path));
+				
+				mainpanel.repaint();
 			}
 		}
 		else if(e.getActionCommand() == menuItem.getText()) {
 			mainpanel.getShapeList().clear();
-			
-//			cPanel.canvasRepaint();
+			mainpanel.repaintCanvas();
 		}
 	}
 
