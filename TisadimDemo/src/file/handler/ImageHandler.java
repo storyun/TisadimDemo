@@ -52,6 +52,7 @@ public  class  ImageHandler implements Serializable{
 				ImageIO.write(image, "jpg", fos);	 
 				fos.close();
 	 
+				
 			}
 			catch(Exception e)
 			{
@@ -59,6 +60,7 @@ public  class  ImageHandler implements Serializable{
 			}
 	 
 	}
+
 	 
  		/**
 		 *  객체직렬화로 불러오기 함수.
