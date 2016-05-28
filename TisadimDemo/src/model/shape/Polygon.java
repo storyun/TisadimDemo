@@ -28,7 +28,7 @@ public class Polygon extends Shape{
 	 */
 	public boolean checkIsmadePolygon(Point startP, Point curP){
 		
-		double rad =  2.0;
+		double rad =  20.0;
 		
 		//내접하는 계산식
 		double dx2 = (curP.getX()- startP.getX())*(curP.getX()- startP.getX()) ;
@@ -36,9 +36,13 @@ public class Polygon extends Shape{
 		double result = dx2 +dy2;
 				  
 		if( result <= (rad*rad) ){
+			System.out.println(result - rad*rad);
 			return true;
-		}else
+		}else{
+			System.out.println(result - rad*rad);
 			return false;
+		}
+			
 		
 		
 	}
@@ -77,12 +81,14 @@ public class Polygon extends Shape{
 		if(pointList.size() == 0) {
 			pointList.add(point);
 			currentPoint = point;
+			System.out.println("");
 		}
 		else {
 			// 입력받은점이 시작점과 같은지
-			if(pointList.get(START_POINT).x-5 < point.x && pointList.get(START_POINT).x + 5 > point.x
-					&& pointList.get(START_POINT).y-5 < point.y && pointList.get(START_POINT).y+5 > point.y) {
-				isIng = false;
+			/*if(pointList.get(START_POINT).x == point.x && pointList.get(START_POINT).y == point.y) {
+				*/
+			if(checkIsmadePolygon(pointList.get(START_POINT), point)){
+			isIng = false;
 				
 				// 최소값 최대값 ,,
 				initialStartEndPoint();
@@ -157,7 +163,6 @@ public class Polygon extends Shape{
 	public void setIng(boolean isIng) {
 		this.isIng = isIng;
 	}
-	
 	
 	
 }
