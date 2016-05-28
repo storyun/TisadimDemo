@@ -37,6 +37,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
    
    private SadimFrame mainFrame;
    private MyCanvas canvas;
+   private MyCanvas shapeCanvas;
    
    private int shapeId;
    private Color edgeColor;
@@ -129,18 +130,25 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
     
             // 이전까지 그렸던 도형 그림
          for(int i=0; i<shapeList.size(); i++) {
-            
+
             Shape s = shapeList.get(i);
 
             g2.setColor(s.getEdgeColor());
             g2.setStroke(new BasicStroke(s.getStroke()));
             s.drawEdge(g2);
             
-            g2.setColor(s.getFillColor());
-            s.drawFill(g2);
+            if( s.getId() != Shape.POLYGON) {
+	            g2.setColor(s.getFillColor());
+	            s.drawFill(g2);
+            }
+            else if( s.getId() == Shape.POLYGON) {
+            	g2.setColor(s.getFillColor());
+	            s.drawFill(g2);
+            }
 
             if(selectIndex == i)
                s.drawSelect(g2,shapeList.get(i).getId());
+
          }
       }
    }
@@ -357,4 +365,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
       canvas.repaint();
    }
    
+   public void clearCmd() {
+	   cmd = 0;
+   }
 }

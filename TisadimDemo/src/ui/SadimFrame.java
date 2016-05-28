@@ -299,11 +299,12 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 	public void actionPerformed(ActionEvent e) {
 		//그림 선택
 		if(e.getSource() == btnSelect) {
-			 mainpanel.setShapeId(Shape.SELECT);			
+			 mainpanel.setShapeId(Shape.SELECT);		
 		}
 		//원 선택
 		else if(e.getSource() == btnCircle) {
 			mainpanel.setShapeId(Shape.CIRCLE);
+			
 		}
 		//사각형 선택
 		else if(e.getSource() == btnRectangle) {
