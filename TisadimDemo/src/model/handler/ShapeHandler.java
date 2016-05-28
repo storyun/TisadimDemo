@@ -21,8 +21,8 @@ public class ShapeHandler {
 				double atX = (p.get(j).getX() - p.get(i).getX()) *(q.getY() - p.get(i).getY()) 
 						/ (p.get(j).getY() -p.get(i).getY()) + p.get(i).getX();
 				if(q.getX() < atX)
-					cross++;
-			}
+					cross++;		
+				}
 		}
 		return cross % 2 >0;
 	}

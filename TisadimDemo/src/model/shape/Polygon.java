@@ -91,6 +91,7 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
       if(polyPointList.size() == 0) {
        
          polyPointList.add(point);   //우리가 그릴 다각형
+         setPolyPointList(polyPointList);  //부모  Shape에서 접근할수 있도록 
          pointList.add(point);       //감싸는 사각형을 위한것
          setPointList(pointList);
          currentPoint = point;
@@ -109,9 +110,10 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
             initialPointList();
          }
          else{
-            pointList.add(point);       //감싸는 사각형을 위한것
+             pointList.add(point);       //감싸는 사각형을 위한것
              setPointList(pointList);         
              polyPointList.add(point);   // 다각형에 추가
+             setPolyPointList(polyPointList);  //부모  Shape에서 접근할수 있도록              
          }
       }
    }
