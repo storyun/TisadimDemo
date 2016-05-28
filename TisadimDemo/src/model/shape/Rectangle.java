@@ -49,6 +49,7 @@ public class Rectangle extends Shape{
 		// TODO Auto-generated method stub
 		setEndPoint(endPoint);
 		initialWidthHeight();
+		
 	}
 	
 	private void initialRealPoint() {
@@ -88,9 +89,9 @@ public class Rectangle extends Shape{
 		
 		initialRealPoint();
 		initialWidthHeight();
-		initialCenterPoint();
-		
+		initialCenterPoint();		
 		initialPointList();
+		
 	}
 
 	@Override

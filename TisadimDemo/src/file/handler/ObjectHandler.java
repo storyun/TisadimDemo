@@ -22,8 +22,7 @@ public  class  ObjectHandler implements Serializable{
 	/**
 	 *  객체 핸들러
 	 *  직렬화된 객체를 저장하거 불러올수 있다.
-	 */
-	
+	 */	
 	
 	ShapeList model = null;
 	/**
