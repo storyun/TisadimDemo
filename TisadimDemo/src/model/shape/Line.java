@@ -45,7 +45,6 @@ public class Line extends Shape{
 	@Override
 	public void doRelease(Point endPoint) {
 		// TODO Auto-generated method stub
-		
 		initialCenterPoint();
 	}
 }

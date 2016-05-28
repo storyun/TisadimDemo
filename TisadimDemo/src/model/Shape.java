@@ -57,17 +57,39 @@ public abstract class Shape implements Serializable{
 	public abstract void doPress(Point endPoint);
 	public abstract void doRelease(Point endPoint);
 	
-	public void drawSelect(Graphics2D g) {
+	public void drawSelect(Graphics2D g, int shapeID) {
+	
 		g.setColor(Color.BLACK);
-		
 		float[] dash = new float[]{5,5,5,5};
 		g.setStroke(new BasicStroke(1,0,BasicStroke.JOIN_MITER,1.0f,dash,0));
-		g.drawRect(pointList.get(START_POINT).x, pointList.get(START_POINT).y,
-				pointList.get(END_POINT).x - pointList.get(START_POINT).x, pointList.get(END_POINT).y - pointList.get(START_POINT).y);
 		
-		g.setStroke(new BasicStroke(5.0f));
-		for(int i=0; i<pointList.size(); i++) {
-			g.drawRect(pointList.get(i).x, pointList.get(i).y, 1, 1);
+		switch(shapeID)
+		{
+		case 1:
+		case 2:
+		case 3:
+		{
+			g.drawRect(pointList.get(START_POINT).x, pointList.get(START_POINT).y,
+					pointList.get(END_POINT).x - pointList.get(START_POINT).x, pointList.get(END_POINT).y - pointList.get(START_POINT).y);
+			
+			g.setStroke(new BasicStroke(5.0f));
+			for(int i=0; i<pointList.size(); i++) {
+				g.drawRect(pointList.get(i).x, pointList.get(i).y, 1, 1);
+			}
+			break;
+		}
+		case 4: //line
+		{
+			g.setStroke(new BasicStroke(5.0f));
+			g.drawRect(startPoint.x, startPoint.y, 1, 1);
+			g.drawRect(endPoint.x, endPoint.y, 1, 1);
+			break;
+		}
+		case 5: //curve
+		{
+			
+			break;
+		}
 		}
 	}
 	

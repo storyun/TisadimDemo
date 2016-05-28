@@ -236,7 +236,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
          //다각형이나 선택 모드가 아닐때.
       }
       else if( shapeId == Shape.SELECT && pointIndex>= 0) {
-         shape.doResize(e.getPoint(), pointIndex);
+         //shape.doResize(e.getPoint(), pointIndex);
       }      
     
       else if(shapeId == Shape.POLYGON ){

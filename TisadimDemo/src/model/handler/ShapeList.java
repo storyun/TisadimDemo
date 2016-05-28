@@ -3,7 +3,6 @@ package model.handler;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.LinkedList;
-import java.util.LinkedList;
 
 import model.Shape;
 
@@ -41,7 +40,7 @@ public class ShapeList implements Serializable{
 		int index = -1;
 		
 		for(int i=shapeList.size()-1;i>=0;i--)
-		{System.out.println(shapeList.get(i).getId());
+		{
 			switch(shapeList.get(i).getId())
 			{
 			case 1: //circle
@@ -54,9 +53,8 @@ public class ShapeList implements Serializable{
 						+(double)((point.y-shapeList.get(i).getCenterPoint().y)*(point.y-shapeList.get(i).getCenterPoint().y))/(b*b);
 
 				if(ellipse<=1)
-				{
 					return i;
-				}
+
 				break;
 			}
 			case 2: //rectangle
@@ -64,32 +62,56 @@ public class ShapeList implements Serializable{
 				if(shapeList.get(i).getStartPoint().x<=point.x && point.x<=shapeList.get(i).getEndPoint().x)
 				{
 					if(shapeList.get(i).getStartPoint().y<=point.y && point.y<=shapeList.get(i).getEndPoint().y)
-					{
 						return i;
-					}
+
 				}
 				break;
 			}
 			case 3: //polygon
 			{
+				int cross=0;
+				
+				for(int i=0;  i<shapeList.get(i); i++){
+					         int j = (i+1) %p.size();
+					         if(  (p.get(i).getY() > q.getY())  != (p.get(j).getY() > q.getY() )){
+					            double atX = (p.get(j).getX() - p.get(i).getX()) *(q.getY() - p.get(i).getY()) 
+					                  / (p.get(j).getY() -p.get(i).getY()) + p.get(i).getX();
+					            if(q.getX() < atX)
+					               cross++;
+					         }
+					      }
+					      return cross % 2 >0;
+					   }
 				break;
 			}
 			case 4: //line
-			{	System.out.println(shapeList.get(i).getStartPoint().x+" "+shapeList.get(i).getEndPoint().x);
-			System.out.println(point.x);
-				if(shapeList.get(i).getStartPoint().x<=point.x && point.x<=shapeList.get(i).getEndPoint().x)
+			{	
+				int a = shapeList.get(i).getStartPoint().x, b = shapeList.get(i).getEndPoint().x;
+				if(a<b)
 				{
-					
-					
-					//double randa =  (double)(shapeList.get(i).getEndPoint().y-shapeList.get(i).getStartPoint().y)/(double)(shapeList.get(i).getEndPoint().x-shapeList.get(i).getStartPoint().x);
-					//if((double)point.y-shapeList.get(i).getStartPoint().y - randa*(point.x-shapeList.get(i).getStartPoint().x) <10)
-					//{
-						return i;
-					//}
+					if(a<=point.x && point.x<=b)
+						;
+					else
+						break;
 				}
+				else
+				{
+					if(b<=point.x && point.x<=a)
+						;
+					else
+						break;
+				}
+						
+				double randa =  (double)(shapeList.get(i).getEndPoint().y-shapeList.get(i).getStartPoint().y)/(double)(shapeList.get(i).getEndPoint().x-shapeList.get(i).getStartPoint().x);
+				double result = (double)point.y-shapeList.get(i).getStartPoint().y - randa*(point.x-shapeList.get(i).getStartPoint().x);
+				if(-20<= result && result <= 20)
+					return i;
 				break;
 			}
-			case 5:
+			case 5: //curve
+			{
+				break;
+			}
 			}
 			
 		}
