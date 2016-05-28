@@ -119,78 +119,79 @@ public abstract class Shape implements Serializable{
 		p.y = (startPoint.y + endPoint.y ) /2;
 		pointList.add(p);
 	}
-	
+
 	// setter, getter
 	
-	protected int getId() {
+	
+	public int getId() {
 		return id;
 	}
 
-	protected void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	protected ArrayList<Point> getPointList() {
+	public ArrayList<Point> getPointList() {
 		return pointList;
 	}
 
-	protected void setPointList(ArrayList<Point> pointList) {
+	public void setPointList(ArrayList<Point> pointList) {
 		this.pointList = pointList;
 	}
 
-	protected Color getEdgeColor() {
+	public Color getEdgeColor() {
 		return edgeColor;
 	}
 
-	protected void setEdgeColor(Color edgeColor) {
+	public void setEdgeColor(Color edgeColor) {
 		this.edgeColor = edgeColor;
 	}
 
-	protected Color getFillColor() {
+	public Color getFillColor() {
 		return fillColor;
 	}
 
-	protected void setFillColor(Color fillColor) {
+	public void setFillColor(Color fillColor) {
 		this.fillColor = fillColor;
 	}
 
-	protected float getStroke() {
+	public float getStroke() {
 		return stroke;
 	}
 
-	protected void setStroke(float stroke) {
+	public void setStroke(float stroke) {
 		this.stroke = stroke;
 	}
 
-	protected BasicStroke getBasicStroke() {
+	public BasicStroke getBasicStroke() {
 		return basicStroke;
 	}
 
-	protected void setBasicStroke(BasicStroke basicStroke) {
+	public void setBasicStroke(BasicStroke basicStroke) {
 		this.basicStroke = basicStroke;
 	}
 
-	protected Point getCenterPoint() {
+	public Point getCenterPoint() {
 		return centerPoint;
 	}
 
-	protected void setCenterPoint(Point centerPoint) {
+	public void setCenterPoint(Point centerPoint) {
 		this.centerPoint = centerPoint;
 	}
 
-	protected Point getStartPoint() {
+	public Point getStartPoint() {
 		return startPoint;
 	}
 
-	protected void setStartPoint(Point startPoint) {
+	public void setStartPoint(Point startPoint) {
 		this.startPoint = startPoint;
 	}
 
-	protected Point getEndPoint() {
+	public Point getEndPoint() {
 		return endPoint;
 	}
 
-	protected void setEndPoint(Point endPoint) {
+	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
 	}
 	

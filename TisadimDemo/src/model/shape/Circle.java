@@ -16,7 +16,7 @@ public class Circle extends Shape{
 	public Circle(Color edgeColor, Color fillColor, float stroke) {
 		super(edgeColor, fillColor, stroke);
 		
-		setId(Shape.RECTANGLE);
+		setId(Shape.CIRCLE);
 		width = 0;
 		height = 0;
 	}
@@ -24,7 +24,7 @@ public class Circle extends Shape{
 	@Override
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
-		g.drawRect(getStartPoint().x, getStartPoint().y, width, height);
+		g.drawOval(getStartPoint().x, getStartPoint().y, width, height);
 	}
 
 	@Override
