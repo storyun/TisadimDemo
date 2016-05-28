@@ -272,6 +272,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
     	  cmd = 0;
     	  point = null;
       }
+
       else if(shapeId == Shape.POLYGON ){
                Polygon poly = (Polygon)shape;
                /**만약 다각형을 그리는 순간이끝났다면   **/
