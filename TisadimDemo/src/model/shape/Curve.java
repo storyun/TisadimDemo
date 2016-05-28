@@ -86,5 +86,15 @@ public class Curve extends Shape{
 		setEndPoint(endPoint);
 	}
 	
-	
+	public void doMove(Point currentPoint, Point movePoint) {
+		int differX = movePoint.x - currentPoint.x;
+		int differY = movePoint.y - currentPoint.y;
+		
+		ArrayList<Point> pList = getPointList();
+		for(int i=0; i<pList.size(); i++) {
+			pList.get(i).setLocation(pList.get(i).x+differX, pList.get(i).y + differY);
+		}		
+//		initialCenterPoint();
+//		initialPointList();
+	}
 }

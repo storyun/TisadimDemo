@@ -165,10 +165,6 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		spinner.setBounds(87, 356, 87, 35);
 		spinner.setModel(new SpinnerNumberModel((float)1, (float)0, (float)10, (float)1));
 		panel.add(spinner);
-		
-		slider = new JSlider(SwingConstants.HORIZONTAL);
-		slider.setBounds(1, 390, 174, 43);
-		panel.add(slider);
 
 		//상단 메뉴바
 		menuBar = new JMenuBar();
@@ -196,16 +192,6 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		mnEdit = new JMenu("편집");
 		menuBar.add(mnEdit);
 		
-		mntmNewMenuItem_2 = new JMenuItem("실행 취소");
-		mntmNewMenuItem_2.setEnabled(false);
-		mntmNewMenuItem_2.addActionListener(this);
-		mnEdit.add(mntmNewMenuItem_2);
-		
-		mntmNewMenuItem_9 = new JMenuItem("되돌리기");
-		mntmNewMenuItem_9.setEnabled(false);
-		mntmNewMenuItem_9.addActionListener(this);
-		mnEdit.add(mntmNewMenuItem_9);
-		
 		mntmNewMenuItem_3 = new JMenuItem("잘라내기");
 		mntmNewMenuItem_3.setEnabled(false);
 		mntmNewMenuItem_3.addActionListener(this);
@@ -225,21 +211,6 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 		mntmNewMenuItem_6.setEnabled(false);
 		mntmNewMenuItem_6.addActionListener(this);
 		mnEdit.add(mntmNewMenuItem_6);
-		
-		mnView = new JMenu("보기");
-		menuBar.add(mnView);
-		
-		mntmNewMenuItem_7 = new JMenuItem("확대");
-		mnView.add(mntmNewMenuItem_7);
-		
-		mntmNewMenuItem_8 = new JMenuItem("축소");
-		mnView.add(mntmNewMenuItem_8);
-		
-		chckbxmntmNewCheckItem = new JCheckBoxMenuItem("상태 표시줄");
-		mnView.add(chckbxmntmNewCheckItem);
-		
-		chckbxmntmNewCheckItem_1 = new JCheckBoxMenuItem("도형 정보");
-		mnView.add(chckbxmntmNewCheckItem_1);
 		
 		//가운데
 		mainpanel = new SadimPanel(this);
@@ -364,7 +335,7 @@ public class SadimFrame extends JFrame  implements ActionListener, MouseInputLis
 			}
 		}
 		else if(e.getActionCommand() == menuItem_1.getText()) {
-			if( fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			if( fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
 				String path = "";
 				path = fileChooser.getSelectedFile().toString();
 				 ImageHandler.ImageSave(path, mainpanel.getCanvas() );				
