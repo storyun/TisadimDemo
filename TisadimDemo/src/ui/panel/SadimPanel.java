@@ -129,7 +129,7 @@ public class SadimPanel extends JPanel implements ActionListener, MouseInputList
             s.drawFill(g2);
 
             if(selectIndex == i)
-               s.drawSelect(g2);
+               s.drawSelect(g2,shapeList.get(i).getId());
          }
       }
    }

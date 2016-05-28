@@ -69,19 +69,7 @@ public class ShapeList implements Serializable{
 			}
 			case 3: //polygon
 			{
-				int cross=0;
 				
-				for(int i=0;  i<shapeList.get(i); i++){
-					         int j = (i+1) %p.size();
-					         if(  (p.get(i).getY() > q.getY())  != (p.get(j).getY() > q.getY() )){
-					            double atX = (p.get(j).getX() - p.get(i).getX()) *(q.getY() - p.get(i).getY()) 
-					                  / (p.get(j).getY() -p.get(i).getY()) + p.get(i).getX();
-					            if(q.getX() < atX)
-					               cross++;
-					         }
-					      }
-					      return cross % 2 >0;
-					   }
 				break;
 			}
 			case 4: //line
