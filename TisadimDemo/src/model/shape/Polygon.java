@@ -11,12 +11,14 @@ public class Polygon extends Shape{
 
    public static final int START_POINT = 0;
    
+   private ArrayList<Point> contactPointList = new ArrayList<Point>();
    private boolean isIng;
    private Point currentPoint;
    private ArrayList<Point> polyPointList;
    public ArrayList<Point> getPolyPointList() {
    return polyPointList;
 }
+
 public void setPolyPointList(ArrayList<Point> polyPointList) {
    this.polyPointList = polyPointList;
 }
@@ -118,6 +120,9 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
             // 중심점
             initialCenterPoint();
             
+            //pointList와 polyPointList 와의 접점을 찾는다.
+            initialContactPoints();
+            
          }
          else{
              pointList.add(point);       //감싸는 사각형을 위한것
@@ -127,8 +132,25 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
          }
       }
    }
+   private boolean checkPoint(Point p1, Point p2){	//두점이 같은 선상에있는지 체크하는 함수
+	   if(p1.x == p2.x ){
+		   return true;
+	   }
+	   else if(p1.y == p2.y){
+		   return true;
+	   }
+	   return false;
+   }
    
-   
+   private void initialContactPoints(){
+	   Point p;
+	   // 접점 찾기
+	   for(int i=0; i<polyPointList.size(); i++){ //다각형의 모든 점들중
+		   p= polyPointList.get(i);		 
+		   if( checkPoint(p, getStartPoint()))contactPointList.add(p);
+		   else if(checkPoint(p, getEndPoint()))contactPointList.add(p);
+      }
+   }
    
    private void initialStartEndPoint() {
       int minX = getPointList().get(START_POINT).x;
@@ -174,6 +196,79 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
       
    }
    
+   public void doResize(Point p, int pointIndex) {
+	   int idx=-1;	//polyPointList 의 정보를 가지고있다.
+		switch(pointIndex) {
+		case 0:
+			getStartPoint().setLocation(p);
+			break;
+		case 1:
+			
+			for(int i=0; i<polyPointList.size(); i++){ //스위치문마다 도는 최악의 알고리즘ㄴ
+				if( polyPointList.get(i).y == getStartPoint().y){
+					idx= i;
+					break;
+				}				
+			}
+			if(idx!= -1)
+				polyPointList.set( idx, new Point(polyPointList.get(idx).x,p.y));
+			
+			getStartPoint().setLocation(getStartPoint().x, p.y);
+			
+			break;
+		case 2:
+			getStartPoint().setLocation(getStartPoint().x, p.y);
+			getEndPoint().setLocation(p.x, getEndPoint().y);
+			break;
+		case 3:
+			for(int i=0; i<polyPointList.size(); i++){ //스위치문마다 도는 최악의 알고리즘ㄴ
+				if( polyPointList.get(i).x == getEndPoint().x){
+					idx= i;
+					break;
+				}				
+			}
+			if(idx!= -1)
+				polyPointList.set( idx, new Point(p.x,polyPointList.get(idx).y));			
+			getEndPoint().setLocation(p.x, getEndPoint().y);			
+			break;
+		case 4:
+			getEndPoint().setLocation(p);
+			break;
+		case 5:
+			for(int i=0; i<polyPointList.size(); i++){ //스위치문마다 도는 최악의 알고리즘ㄴ
+				if( polyPointList.get(i).y == getEndPoint().y){
+					idx= i;
+					break;
+				}				
+			}
+			if(idx!= -1)
+				polyPointList.set( idx, new Point(polyPointList.get(idx).x,p.y));
+			
+			getEndPoint().setLocation(getEndPoint().x, p.y);
+			break;
+		case 6:
+			getStartPoint().setLocation(p.x, getStartPoint().y);
+			getEndPoint().setLocation(getEndPoint().x, p.y);
+			break;
+		case 7:
+			
+			for(int i=0; i<polyPointList.size(); i++){ //스위치문마다 도는 최악의 알고리즘ㄴ
+				if( polyPointList.get(i).x == getStartPoint().x){
+					idx= i;
+					break;
+				}				
+			}
+			if(idx!= -1)
+				polyPointList.set( idx, new Point(p.x, polyPointList.get(idx).y));	
+			getStartPoint().setLocation(p.x, getStartPoint().y);
+			break;
+		}
+		
+		initialWidthHeight();
+		initialCenterPoint();
+		initialPointList();
+	}
+   
    public void doMove(Point currentPoint) {
       if(isIng) {
          this.currentPoint = currentPoint;
@@ -197,7 +292,7 @@ public Polygon(Color edgeColor, Color fillColor, float stroke) {
 		}
 	}
    
-
+   
    //getter, setter
    public boolean isIng() {
       return isIng;
